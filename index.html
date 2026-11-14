@@ -515,6 +515,13 @@ footer .fnote{display:block;margin-top:40px;padding-top:24px;border-top:1px soli
 .fix-btns{display:flex;flex-direction:column;align-items:stretch;gap:10px;width:min(360px,100%)}
 .fix-btns .btn{justify-content:center;padding:0 16px}
 @media (max-width:1000px){.hero .city{position:relative;left:auto;right:auto;bottom:auto;align-self:center;margin-top:.15em;margin-left:.6em;transform:rotate(-6deg);font-size:clamp(42px,9vw,64px)}}
+#lb{animation:lbshade .45s ease both}
+#lb:not(.pop) .sheet-in.lb{animation:lbin .6s cubic-bezier(.16,.84,.24,1) both}
+#lb.out{opacity:0;transition:opacity .3s ease}
+@keyframes lbshade{from{background-color:rgba(23,22,22,0)}}
+@keyframes lbin{from{opacity:0;transform:translateY(28px) scale(.94)}to{opacity:1;transform:none}}
+html,body{overflow-x:clip}
+@media (max-width:1000px){.hero .city{align-self:flex-end;margin-left:0;margin-right:4px;margin-top:.05em}}
 </style>
 </head>
 <body>
@@ -870,16 +877,20 @@ document.querySelectorAll('.card').forEach(function(c){
   $$('.fear').forEach(function(f){f.addEventListener('click',function(){if(matchMedia('(hover:hover)').matches)return;var on=f.classList.contains('on');$$('.fear.on').forEach(function(x){x.classList.remove('on')});if(!on)f.classList.add('on')})});
   // окна
   function open(id){var s=document.getElementById(id);s.hidden=false;var f=s.querySelector('.x');f&&f.focus()}
-  function close(s){s.hidden=true}
+  function close(s){if(s.hidden)return;if(s.id!=='lb'){s.hidden=true;return}s.classList.add('out');setTimeout(function(){s.hidden=true;s.classList.remove('out')},320)}
   $$('.sheet').forEach(function(s){s.addEventListener('click',function(e){if(e.target===s||e.target.closest('[data-close]'))close(s)})});
   addEventListener('keydown',function(e){if(e.key==='Escape')$$('.sheet').forEach(close)});
   $$('[data-write]').forEach(function(b){b.addEventListener('click',function(){open('write')})});
-  $$('.cert,.rimg').forEach(function(c){c.addEventListener('click',function(){$('#lb').classList.remove('pop');var i=$('#lb img');i.src=c.dataset.full;i.alt=c.querySelector('img').alt;open('lb')})});
+  // просмотр: сначала грузим картинку, потом плавно показываем
+  function showLb(src,alt,pop){var lb=$('#lb'),i=$('#lb img'),pre=new Image();pre.src=src;
+    var go=function(){i.src=src;i.alt=alt;lb.classList.remove('out');lb.classList.toggle('pop',!!pop);lb.hidden=true;void lb.offsetWidth;open('lb')};
+    (pre.decode?pre.decode():Promise.resolve()).then(go,go)}
+  $$('.cert,.rimg').forEach(function(c){c.addEventListener('click',function(){showLb(c.dataset.full,c.querySelector('img').alt,false)})});
   $$('[data-doc]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open('doc')})});
   // карта: на сайте и в файле подгружаем Яндекс Карту
   var mp=$('.map');if(mp&&!/claude/.test(location.hostname)){var fr=document.createElement('iframe');fr.src=mp.dataset.map;fr.title='Студия на Яндекс Картах: Ярославль, ул. Советская, 45';fr.loading='lazy';fr.setAttribute('allowfullscreen','');mp.appendChild(fr)}
   // фото обучения: цвет по нажатию на телефоне
-  $$('.edu-arches figure').forEach(function(f){f.addEventListener('click',function(){var m=f.querySelector('img'),i=$('#lb img');i.src=m.getAttribute('src');i.alt=m.alt;$('#lb').classList.add('pop');open('lb')})});
+  $$('.edu-arches figure').forEach(function(f){f.addEventListener('click',function(){var m=f.querySelector('img');showLb(m.getAttribute('src'),m.alt,true)})});
   $$('.cmb').forEach(function(c){c.addEventListener('click',function(e){if(e.target.closest('.go')||matchMedia('(hover:hover)').matches)return;var on=c.classList.contains('on');$$('.cmb.on').forEach(function(x){x.classList.remove('on')});if(!on)c.classList.add('on')})});
   // форма: честное сообщение, пока нет хостинга
   var f=$('#cb'),m=$('.fmsg',f);
