@@ -522,6 +522,20 @@ footer .fnote{display:block;margin-top:40px;padding-top:24px;border-top:1px soli
 @keyframes lbin{from{opacity:0;transform:translateY(28px) scale(.94)}to{opacity:1;transform:none}}
 html,body{overflow-x:clip}
 @media (max-width:1000px){.hero .city{align-self:flex-end;margin-left:0;margin-right:4px;margin-top:.05em}}
+/* правки 15.11: скидки вместо комбо */
+@media (max-width:560px){.cards .card:last-child{grid-column:1/-1}.cards .card:last-child .ph{aspect-ratio:4/3}.price .from{font-size:9px;margin-right:2px;letter-spacing:0}.price b:has(.from){font-size:18px}}@media (max-width:380px){.price b:has(.from){font-size:15.5px}}
+.price .from{font-family:var(--body);font-size:11px;letter-spacing:.08em;margin-right:5px;color:var(--stone);vertical-align:middle}
+.cmbs.disc2{grid-template-columns:1fr 1fr}
+@media (max-width:560px){.cmbs.disc2{display:grid;grid-template-columns:1fr;overflow:visible;margin-inline:0;padding:0}}
+/* правки 15.11: шкала Фитцпатрика — свои портреты I–VI */
+.fz{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(10px,1.6vw,22px);max-width:980px;margin:40px auto 0}
+.fzf{margin:0;text-align:center}
+.fzf svg{display:block;width:100%;height:auto;transition:transform .9s var(--ease),filter .9s var(--ease)}
+.fzf:hover svg{transform:translateY(-8px);filter:drop-shadow(0 18px 18px rgba(94,28,43,.18))}
+.fzf figcaption{display:flex;flex-direction:column;gap:2px;margin-top:10px}
+.fzf b{font-family:var(--display);font-weight:400;font-size:22px;color:var(--marsala);line-height:1}
+.fzf span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+@media (max-width:640px){.fz{grid-template-columns:repeat(3,1fr);gap:14px 12px;margin-top:28px}.fzf b{font-size:19px}.fzf span{font-size:10px;letter-spacing:.06em}}
 </style>
 </head>
 <body>
@@ -607,10 +621,109 @@ html,body{overflow-x:clip}
       <div><span class="pn">04</span><h3>На&nbsp;связи после процедуры</h3><p>Весь период заживления отвечаю на&nbsp;вопросы и&nbsp;слежу, как&nbsp;всё&nbsp;проходит</p></div>
     </div>
     <div class="rv">
-      <div class="scale">
-        <div style="background:#F3DCCB">I</div><div style="background:#E8C3A6">II</div><div style="background:#D3A27E">III</div><div style="background:#B07B57;color:#fff">IV</div><div style="background:#7E5139;color:#fff">V</div><div style="background:#4A3026;color:#fff">VI</div>
-      </div>
-      <div class="scale-cap"><span>очень светлая</span><span>светлая</span><span>средняя</span><span>оливковая</span><span>смуглая</span><span>тёмная</span></div>
+      <div class="fz"><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи I">
+<defs><clipPath id="fz0"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
+<g clip-path="url(#fz0)">
+<rect width="120" height="150" fill="#EFE5E1"/>
+<path d="M30 70 C28 40 44 28 60 28 C76 28 92 40 90 70 L94 150 L26 150 Z" fill="#E9D3A6"/>
+<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#D8C6B9"/>
+<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#DDD0C7"/>
+<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#D8C6B9"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#D8C6B9"/>
+<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#F6E1D3"/>
+<path d="M38 60 C40 40 52 34 60 36 C68 34 80 40 82 60 C76 48 68 44 60 44 C52 44 44 48 38 60 Z" fill="#E9D3A6"/>
+<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#80745B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#80745B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#4A3A33" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#4A3A33" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#988B82" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#D99A94"/>
+<ellipse cx="47" cy="81" rx="5" ry="3" fill="#D99A94" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#D99A94" opacity=".18"/>
+</g></svg><figcaption><b>I</b><span>очень светлая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи II">
+<defs><clipPath id="fz1"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
+<g clip-path="url(#fz1)">
+<rect width="120" height="150" fill="#EFE5E1"/>
+<path d="M31 72 C27 42 44 27 60 27 C78 27 94 42 89 72 C92 92 88 102 82 106 L38 106 C32 102 28 92 31 72 Z" fill="#B8763F"/>
+<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#D0B29B"/>
+<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#2A2626"/>
+<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#D0B29B"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#D0B29B"/>
+<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#EDCBB1"/>
+<path d="M37 62 C38 40 52 34 64 36 C76 38 84 48 83 62 C74 50 62 48 52 50 C44 52 40 56 37 62 Z" fill="#B8763F"/>
+<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#654022" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#654022" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#52351C" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#52351C" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#927D6D" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#CE8577"/>
+<ellipse cx="47" cy="81" rx="5" ry="3" fill="#CE8577" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#CE8577" opacity=".18"/>
+</g></svg><figcaption><b>II</b><span>светлая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи III">
+<defs><clipPath id="fz2"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
+<g clip-path="url(#fz2)">
+<rect width="120" height="150" fill="#EFE5E1"/>
+<path d="M32 70 C30 40 46 28 62 28 C80 29 92 42 90 72 L96 150 L28 150 L34 110 Z" fill="#6E4A2E"/>
+<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#BE9472"/>
+<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#DDD0C7"/>
+<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#BE9472"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#BE9472"/>
+<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#D9A982"/>
+<path d="M38 64 C38 42 50 34 66 36 C78 38 84 50 82 62 C76 50 66 46 58 48 C48 50 42 56 38 64 Z" fill="#6E4A2E"/>
+<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#422C1B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#422C1B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#312114" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#312114" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#866850" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#B96A5C"/>
+<ellipse cx="47" cy="81" rx="5" ry="3" fill="#B96A5C" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#B96A5C" opacity=".18"/>
+</g></svg><figcaption><b>III</b><span>средняя</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи IV">
+<defs><clipPath id="fz3"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
+<g clip-path="url(#fz3)">
+<rect width="120" height="150" fill="#EFE5E1"/>
+<circle cx="60" cy="25" r="13" fill="#3A2519"/><path d="M34 66 C33 42 46 32 60 32 C74 32 87 42 86 66 Z" fill="#3A2519"/>
+<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#A2704D"/>
+<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#2A2626"/>
+<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#A2704D"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#A2704D"/>
+<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#B98058"/>
+<path d="M37 60 C38 44 48 37 60 37 C72 37 82 44 83 60 C76 50 68 46 60 46 C52 46 44 50 37 60 Z" fill="#3A2519"/>
+<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#22160F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#22160F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#1A100B" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#1A100B" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#724F36" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#9E5546"/>
+<ellipse cx="47" cy="81" rx="5" ry="3" fill="#9E5546" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#9E5546" opacity=".18"/>
+</g></svg><figcaption><b>IV</b><span>оливковая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи V">
+<defs><clipPath id="fz4"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
+<g clip-path="url(#fz4)">
+<rect width="120" height="150" fill="#EFE5E1"/>
+<path d="M29 70 C26 38 44 26 60 26 C78 26 95 38 91 70 C97 90 88 104 96 120 C100 134 92 150 92 150 L28 150 C28 150 20 134 24 120 C32 104 23 90 29 70 Z" fill="#1E1612"/>
+<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#794F33"/>
+<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#DDD0C7"/>
+<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#794F33"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#794F33"/>
+<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#8A5A3B"/>
+<path d="M37 64 C36 42 50 33 62 35 C76 36 85 48 83 64 C78 52 70 46 60 46 C50 47 42 54 37 64 Z" fill="#1E1612"/>
+<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#120D0A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#120D0A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#0D0908" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#0D0908" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#553724" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#7E4136"/>
+<ellipse cx="47" cy="81" rx="5" ry="3" fill="#7E4136" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#7E4136" opacity=".18"/>
+</g></svg><figcaption><b>V</b><span>смуглая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи VI">
+<defs><clipPath id="fz5"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
+<g clip-path="url(#fz5)">
+<rect width="120" height="150" fill="#EFE5E1"/>
+<circle cx="60" cy="46" r="34" fill="#141010"/><circle cx="36" cy="56" r="18" fill="#141010"/><circle cx="84" cy="56" r="18" fill="#141010"/><circle cx="32" cy="76" r="15" fill="#141010"/><circle cx="88" cy="76" r="15" fill="#141010"/><circle cx="44" cy="30" r="16" fill="#141010"/><circle cx="76" cy="30" r="16" fill="#141010"/><circle cx="60" cy="22" r="16" fill="#141010"/><circle cx="36" cy="92" r="11" fill="#141010"/><circle cx="84" cy="92" r="11" fill="#141010"/>
+<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#4A3024"/>
+<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#2A2626"/>
+<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#4A3024"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#4A3024"/>
+<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#55372A"/>
+<path d="M38 58 C40 44 50 38 60 38 C70 38 80 44 82 58 C74 50 66 47 60 47 C54 47 46 50 38 58 Z" fill="#141010"/>
+<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#0C0909" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#0C0909" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#090707" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#090707" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#34221A" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#5E2E28"/>
+<ellipse cx="47" cy="81" rx="5" ry="3" fill="#5E2E28" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#5E2E28" opacity=".18"/>
+</g></svg><figcaption><b>VI</b><span>тёмная</span></figcaption></figure></div>
       <p class="c">Шкала Фитцпатрика: шесть типов кожи. Оттенок пигмента подбираю под&nbsp;ваш тип</p>
     </div>
     <div class="safety rv">
@@ -642,9 +755,9 @@ html,body{overflow-x:clip}
       <div><div class="eyebrow">Услуги и&nbsp;цены</div><h2 class="h2" style="margin-top:18px">Цены на&nbsp;перманент <span class="sig">в&nbsp;Ярославле</span></h2></div>
       <div class="svc-info"><span class="disc"><b>−10%</b> на&nbsp;первый визит</span><p>Приветственные цены до&nbsp;31 декабря 2026&nbsp;года<br>Консультация очно или&nbsp;онлайн по&nbsp;фото бесплатно<br>Нажмите на&nbsp;карточку, чтобы увидеть работу в&nbsp;цвете</p></div>
     </div>
-    <div class="cards"><div class="card rv" tabindex="0"><div class="ph"><img src="assets/e05db53085.jpg" alt="Пудровое напыление бровей, Ярославль"><span class="zone">Брови</span><span class="tapc">нажмите</span></div><div class="body"><h3>Пудровое напыление</h3><span class="tech">около 2&nbsp;ч</span><div class="price"><div><small>первичная</small><b>6&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>4&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img src="assets/77b339df42.jpg" alt="Брови в технике аппаратных волосков"><span class="zone">Брови</span><span class="tapc">нажмите</span></div><div class="body"><h3>Аппаратные волоски</h3><span class="tech">около 3&nbsp;ч</span><div class="price"><div><small>первичная</small><b>8&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>6&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img src="assets/d7c18ca4bf.jpg" alt="Перманент губ в акварельной технике после заживления"><span class="zone">Губы</span><span class="tapc">нажмите</span></div><div class="body"><h3>Акварельные губы</h3><span class="tech">около 2&nbsp;ч</span><div class="price"><div><small>первичная</small><b>6&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>4&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img src="assets/2011852310.jpg" alt="Перманент губ в помадной технике"><span class="zone">Губы</span><span class="tapc">нажмите</span></div><div class="body"><h3>Помадная техника</h3><span class="tech">насыщенный цвет</span><div class="price"><div><small>первичная</small><b>7&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>5&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img class="ph-eye" src="assets/d10a0a7f24.jpg" alt="Межресничка с растушёвкой"><span class="zone">Веки</span><span class="tapc">нажмите</span></div><div class="body"><h3>Межресничка</h3><span class="tech">около 1&nbsp;ч, с&nbsp;растушёвкой или&nbsp;без</span><div class="price"><div><small>первичная</small><b>4 500&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>3&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img class="ph-cons" src="assets/e960ac4682.jpg" alt="Лидия Сучкова, мастер перманентного макияжа в Ярославле, консультация"><span class="zone">Очно или&nbsp;онлайн</span><span class="tapc">нажмите</span></div><div class="body"><h3>Консультация</h3><span class="tech">около 15&nbsp;мин, очно или&nbsp;онлайн по&nbsp;фото</span><div class="price"><div class="free"><small>стоимость</small><b>бесплатно</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div></div>
+    <div class="cards"><div class="card rv" tabindex="0"><div class="ph"><img src="assets/57650e252f.jpg" alt="Пудровое напыление бровей, Ярославль"><span class="zone">Брови</span><span class="tapc">нажмите</span></div><div class="body"><h3>Пудровое напыление</h3><span class="tech">около 2&nbsp;ч</span><div class="price"><div><small>первичная</small><b>6&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>4&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img src="assets/77b339df42.jpg" alt="Брови в технике аппаратных волосков"><span class="zone">Брови</span><span class="tapc">нажмите</span></div><div class="body"><h3>Аппаратные волоски</h3><span class="tech">около 3&nbsp;ч</span><div class="price"><div><small>первичная</small><b>8&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>6&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img src="assets/d7c18ca4bf.jpg" alt="Перманентный макияж губ после заживления, Ярославль"><span class="zone">Губы</span><span class="tapc">нажмите</span></div><div class="body"><h3>Перманентный макияж губ</h3><span class="tech">около 2&nbsp;ч</span><div class="price"><div><small>первичная</small><b><span class="from">от</span>6&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b><span class="from">от</span>4&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img class="ph-eye" src="assets/d10a0a7f24.jpg" alt="Межресничка с растушёвкой"><span class="zone">Веки</span><span class="tapc">нажмите</span></div><div class="body"><h3>Межресничка</h3><span class="tech">около 1&nbsp;ч, с&nbsp;растушёвкой или&nbsp;без</span><div class="price"><div><small>первичная</small><b>4 500&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>3&nbsp;000&nbsp;₽</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="card rv" tabindex="0"><div class="ph"><img class="ph-cons" src="assets/e960ac4682.jpg" alt="Лидия Сучкова, мастер перманентного макияжа в Ярославле, консультация"><span class="zone">Очно или&nbsp;онлайн</span><span class="tapc">нажмите</span></div><div class="body"><h3>Консультация</h3><span class="tech">около 15&nbsp;мин, очно или&nbsp;онлайн по&nbsp;фото</span><div class="price"><div class="free"><small>стоимость</small><b>бесплатно</b></div></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div></div>
     <div class="combo rv">
-      <div class="cmbs"><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 1</span><span class="ct">3&nbsp;зоны · 6&nbsp;ч</span></div><ul class="cz"><li>Брови: аппаратные волоски</li><li>Губы: акварель</li><li>Межресничка</li></ul><div class="cp"><div><small>первичная</small><b>16&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>11&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 2</span><span class="ct">3&nbsp;зоны · 5&nbsp;ч</span></div><ul class="cz"><li>Брови: пудровое напыление</li><li>Губы: акварель</li><li>Межресничка</li></ul><div class="cp"><div><small>первичная</small><b>14&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>9&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 3</span><span class="ct">3&nbsp;зоны · 6&nbsp;ч</span></div><ul class="cz"><li>Брови: пудровое напыление</li><li>Губы: помадная техника</li><li>Межресничка</li></ul><div class="cp"><div><small>первичная</small><b>15&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>10&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 4</span><span class="ct">3&nbsp;зоны · 7&nbsp;ч</span></div><ul class="cz"><li>Брови: аппаратные волоски</li><li>Губы: помадная техника</li><li>Межресничка</li></ul><div class="cp"><div><small>первичная</small><b>17&nbsp;000&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>12&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 5</span><span class="ct">2&nbsp;зоны · 5&nbsp;ч</span></div><ul class="cz"><li>Брови: аппаратные волоски</li><li>Губы: помадная техника</li></ul><div class="cp"><div><small>первичная</small><b>13 500&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>10&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 6</span><span class="ct">2&nbsp;зоны · 5&nbsp;ч</span></div><ul class="cz"><li>Брови: аппаратные волоски</li><li>Губы: акварель</li></ul><div class="cp"><div><small>первичная</small><b>12 500&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>9&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 7</span><span class="ct">2&nbsp;зоны · 4&nbsp;ч 30&nbsp;мин</span></div><ul class="cz"><li>Брови: пудровое напыление</li><li>Губы: акварель</li></ul><div class="cp"><div><small>первичная</small><b>10 500&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>7&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Комбо 8</span><span class="ct">2&nbsp;зоны · 4&nbsp;ч 30&nbsp;мин</span></div><ul class="cz"><li>Брови: пудровое напыление</li><li>Губы: помадная техника</li></ul><div class="cp"><div><small>первичная</small><b>11 500&nbsp;₽</b></div><div class="cor"><small>коррекция</small><b>8&nbsp;000&nbsp;₽</b></div></div><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div></div>
+      <div class="cmbs disc2"><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Скидка −10%</span><span class="ct">2&nbsp;зоны за&nbsp;один визит</span></div><ul class="cz"><li>Любые две процедуры в&nbsp;один день</li><li>Цены зон складываются, скидка на&nbsp;всю сумму</li></ul><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Скидка −15%</span><span class="ct">3&nbsp;зоны и&nbsp;больше</span></div><ul class="cz"><li>Брови, губы и&nbsp;межресничка за&nbsp;один визит</li><li>Между зонами можно отдохнуть</li></ul><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div></div>
     </div>
     <div class="note"><span><b>−10%</b> на&nbsp;первый визит</span><span>Коррекция через 4–8&nbsp;недель, оплачивается отдельно по&nbsp;прайсу. Её&nbsp;необходимость определяю после оценки зажившего результата</span><span>Оплата наличными или&nbsp;переводом</span></div>
   </div>
@@ -721,7 +834,7 @@ html,body{overflow-x:clip}
       <p class="lead">За&nbsp;плечами 16&nbsp;лет предпринимательства. Со&nbsp;временем захотелось творчества, эстетики и&nbsp;возможности создавать красоту своими руками. Так&nbsp;в&nbsp;моей жизни появился перманентный макияж</p>
       <p class="about-p">В&nbsp;новую профессию я&nbsp;перенесла то, что&nbsp;сформировал бизнес: ответственность, внимание к&nbsp;деталям и&nbsp;ориентацию на&nbsp;результат<br>Для&nbsp;меня перманент&nbsp;— осознанный выбор: дело, где&nbsp;результат зависит от&nbsp;меня</p>
       <div class="edu">
-        <div><span>База</span><span>КМИДО, тренер&nbsp;— Елена Жильченко. Диплом установленного образца</span></div>
+        <div><span>База</span><span>Академия перманента Елены Жильченко, курс «Гиперреализм». Диплом установленного образца Краснодарского многопрофильного института дополнительного образования (КМИДО)</span></div>
         <div><span>Волоски</span><span>Аппаратные волоски, обучение у&nbsp;Нины Заславской</span></div>
         <div><span>Дальше</span><span>Регулярно прохожу дополнительные обучения и&nbsp;мастер-классы</span></div>
       </div>
@@ -747,7 +860,7 @@ html,body{overflow-x:clip}
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="rv" style="text-align:center"><div class="eyebrow">Частые вопросы</div><h2 class="h2" style="margin-top:18px">Сомнения <span class="sig" style="padding-left:0">до&nbsp;записи</span></h2></div>
-    <div class="qas rv"><details class="qa"><summary><span>Сколько длится процедура?</span><span class="pl">+</span></summary><p>Пудровое напыление бровей и&nbsp;губы&nbsp;— около 2&nbsp;часов, аппаратные волоски&nbsp;— около 3&nbsp;часов, межресничка&nbsp;— меньше часа</p></details><details class="qa"><summary><span>Можно ли&nbsp;сделать несколько зон за&nbsp;один визит?</span><span class="pl">+</span></summary><p>Да. Для&nbsp;этого есть комбо, они&nbsp;выгоднее по&nbsp;цене. Между зонами можно сделать перерыв и&nbsp;отдохнуть</p></details><details class="qa"><summary><span>Можно ли&nbsp;перекрыть или&nbsp;удалить старый татуаж?</span><span class="pl">+</span></summary><p>Во&nbsp;многих случаях да. Перекрываю брови, губы и&nbsp;межресничку, удаляю ремувером. Пришлите фото: оценю, можно ли&nbsp;перекрыть сразу или&nbsp;сначала нужно осветление</p></details><details class="qa"><summary><span>Не&nbsp;позеленеют ли&nbsp;брови со&nbsp;временем?</span><span class="pl">+</span></summary><p>Работаю на&nbsp;сертифицированных пигментах и&nbsp;подбираю оттенок с&nbsp;учётом кожи и&nbsp;старого перманента, если он&nbsp;есть</p></details><details class="qa"><summary><span>Не&nbsp;перестанут ли&nbsp;расти свои волоски?</span><span class="pl">+</span></summary><p>Нет. Пигмент вносится выше волосяных луковиц</p></details><details class="qa"><summary><span>Больно ли&nbsp;делать перманент?</span><span class="pl">+</span></summary><p>На&nbsp;всех зонах применяю местную анестезию гелем. Она&nbsp;действует после первых проходов аппаратом, поэтому начало процедуры может быть чувствительнее. Ощущения индивидуальны: большинство клиенток переносят процедуру комфортно, некоторые даже засыпают</p></details><details class="qa"><summary><span>Обязательно ли&nbsp;делать коррекцию?</span><span class="pl">+</span></summary><p>Её&nbsp;необходимость определяю после оценки зажившего результата. Коррекцию делают через 4–8&nbsp;недель после первичной процедуры</p></details><details class="qa"><summary><span>Сколько держится перманентный макияж?</span><span class="pl">+</span></summary><p>Брови&nbsp;— 1–1,5&nbsp;года при&nbsp;лёгком результате и&nbsp;2–3&nbsp;года при&nbsp;насыщенном, губы&nbsp;— около 2–3&nbsp;лет, межресничка&nbsp;— несколько лет</p></details><details class="qa"><summary><span>Может ли&nbsp;появиться герпес после перманента губ?</span><span class="pl">+</span></summary><p>Если у&nbsp;вас бывает герпес, заранее посоветуйтесь с&nbsp;врачом о&nbsp;профилактике. Если на&nbsp;губах есть высыпания, процедуру переносим</p></details></div>
+    <div class="qas rv"><details class="qa"><summary><span>Сколько длится процедура?</span><span class="pl">+</span></summary><p>Пудровое напыление бровей и&nbsp;губы&nbsp;— около 2&nbsp;часов, аппаратные волоски&nbsp;— около 3&nbsp;часов, межресничка&nbsp;— меньше часа</p></details><details class="qa"><summary><span>Можно ли&nbsp;сделать несколько зон за&nbsp;один визит?</span><span class="pl">+</span></summary><p>Да, и&nbsp;это выгоднее: на&nbsp;2&nbsp;зоны за&nbsp;один визит скидка 10%, на&nbsp;3&nbsp;зоны и&nbsp;больше 15%. Между зонами можно сделать перерыв и&nbsp;отдохнуть</p></details><details class="qa"><summary><span>Можно ли&nbsp;перекрыть или&nbsp;удалить старый татуаж?</span><span class="pl">+</span></summary><p>Во&nbsp;многих случаях да. Перекрываю брови, губы и&nbsp;межресничку, удаляю ремувером. Пришлите фото: оценю, можно ли&nbsp;перекрыть сразу или&nbsp;сначала нужно осветление</p></details><details class="qa"><summary><span>Не&nbsp;позеленеют ли&nbsp;брови со&nbsp;временем?</span><span class="pl">+</span></summary><p>Работаю на&nbsp;сертифицированных пигментах и&nbsp;подбираю оттенок с&nbsp;учётом кожи и&nbsp;старого перманента, если он&nbsp;есть</p></details><details class="qa"><summary><span>Не&nbsp;перестанут ли&nbsp;расти свои волоски?</span><span class="pl">+</span></summary><p>Нет. Пигмент вносится выше волосяных луковиц</p></details><details class="qa"><summary><span>Больно ли&nbsp;делать перманент?</span><span class="pl">+</span></summary><p>На&nbsp;всех зонах применяю местную анестезию гелем. Она&nbsp;действует после первых проходов аппаратом, поэтому начало процедуры может быть чувствительнее. Ощущения индивидуальны: большинство клиенток переносят процедуру комфортно, некоторые даже засыпают</p></details><details class="qa"><summary><span>Обязательно ли&nbsp;делать коррекцию?</span><span class="pl">+</span></summary><p>Её&nbsp;необходимость определяю после оценки зажившего результата. Коррекцию делают через 4–8&nbsp;недель после первичной процедуры</p></details><details class="qa"><summary><span>Сколько держится перманентный макияж?</span><span class="pl">+</span></summary><p>Брови&nbsp;— 1–1,5&nbsp;года при&nbsp;лёгком результате и&nbsp;2–3&nbsp;года при&nbsp;насыщенном, губы&nbsp;— около 2–3&nbsp;лет, межресничка&nbsp;— несколько лет</p></details><details class="qa"><summary><span>Может ли&nbsp;появиться герпес после перманента губ?</span><span class="pl">+</span></summary><p>Если у&nbsp;вас бывает герпес, заранее посоветуйтесь с&nbsp;врачом о&nbsp;профилактике. Если на&nbsp;губах есть высыпания, процедуру переносим</p></details><details class="qa"><summary><span>Можно ли&nbsp;сделать перманент до&nbsp;18&nbsp;лет?</span><span class="pl">+</span></summary><p>Клиенткам младше 18&nbsp;лет процедура проводится только в&nbsp;присутствии родителя</p></details></div>
   </div>
 </section>
 
@@ -899,7 +1012,8 @@ document.querySelectorAll('.card').forEach(function(c){
     if(!n){m.textContent='Укажите имя';f.name.focus();return}
     if(p.length<10){m.textContent='Укажите телефон полностью';f.phone.focus();return}
     if(!f.agree.checked){m.textContent='Отметьте согласие на обработку данных';return}
-    // TODO на хостинге: отправка заявки в Telegram и копией на lidasand@mail.ru
+    // TODO на хостинге: имя и телефон уходят в сообщения сообщества ВК и на lidasand@mail.ru (оба сервиса ООО «ВК», РФ);
+    // в Telegram — только уведомление «Новая заявка» без имени и телефона (152-ФЗ, ч. 5 ст. 18)
     m.textContent='Это превью сайта: заявка пока не отправляется. Чтобы записаться, нажмите «Записаться онлайн» или напишите в Telegram'});
   // cookies
   var c=$('#cookie'),ok=false;try{ok=localStorage.getItem('ck')==='1'}catch(e){}
