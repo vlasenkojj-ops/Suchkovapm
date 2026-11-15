@@ -530,8 +530,8 @@ html,body{overflow-x:clip}
 /* правки 15.11: шкала Фитцпатрика — свои портреты I–VI */
 .fz{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(10px,1.6vw,22px);max-width:980px;margin:40px auto 0}
 .fzf{margin:0;text-align:center}
-.fzf svg{display:block;width:100%;height:auto;transition:transform .9s var(--ease),filter .9s var(--ease)}
-.fzf:hover svg{transform:translateY(-8px);filter:drop-shadow(0 18px 18px rgba(94,28,43,.18))}
+.fzf img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:999px 999px 0 0;transition:transform .9s var(--ease),filter .9s var(--ease)}
+.fzf:hover img{transform:translateY(-8px);filter:drop-shadow(0 18px 18px rgba(94,28,43,.18))}
 .fzf figcaption{display:flex;flex-direction:column;gap:2px;margin-top:10px}
 .fzf b{font-family:var(--display);font-weight:400;font-size:22px;color:var(--marsala);line-height:1}
 .fzf span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
@@ -625,109 +625,7 @@ html,body{overflow-x:clip}
       <div><span class="pn">04</span><h3>На&nbsp;связи после процедуры</h3><p>Весь период заживления отвечаю на&nbsp;вопросы и&nbsp;слежу, как&nbsp;всё&nbsp;проходит</p></div>
     </div>
     <div class="rv">
-      <div class="fz"><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи I">
-<defs><clipPath id="fz0"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
-<g clip-path="url(#fz0)">
-<rect width="120" height="150" fill="#EFE5E1"/>
-<path d="M30 70 C28 40 44 28 60 28 C76 28 92 40 90 70 L94 150 L26 150 Z" fill="#E9D3A6"/>
-<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#D8C6B9"/>
-<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#DDD0C7"/>
-<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#D8C6B9"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#D8C6B9"/>
-<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#F6E1D3"/>
-<path d="M38 60 C40 40 52 34 60 36 C68 34 80 40 82 60 C76 48 68 44 60 44 C52 44 44 48 38 60 Z" fill="#E9D3A6"/>
-<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#80745B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#80745B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#4A3A33" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#4A3A33" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#988B82" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
-<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#D99A94"/>
-<ellipse cx="47" cy="81" rx="5" ry="3" fill="#D99A94" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#D99A94" opacity=".18"/>
-</g></svg><figcaption><b>I</b><span>очень светлая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи II">
-<defs><clipPath id="fz1"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
-<g clip-path="url(#fz1)">
-<rect width="120" height="150" fill="#EFE5E1"/>
-<path d="M31 72 C27 42 44 27 60 27 C78 27 94 42 89 72 C92 92 88 102 82 106 L38 106 C32 102 28 92 31 72 Z" fill="#B8763F"/>
-<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#D0B29B"/>
-<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#2A2626"/>
-<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#D0B29B"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#D0B29B"/>
-<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#EDCBB1"/>
-<path d="M37 62 C38 40 52 34 64 36 C76 38 84 48 83 62 C74 50 62 48 52 50 C44 52 40 56 37 62 Z" fill="#B8763F"/>
-<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#654022" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#654022" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#52351C" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#52351C" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#927D6D" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
-<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#CE8577"/>
-<ellipse cx="47" cy="81" rx="5" ry="3" fill="#CE8577" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#CE8577" opacity=".18"/>
-</g></svg><figcaption><b>II</b><span>светлая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи III">
-<defs><clipPath id="fz2"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
-<g clip-path="url(#fz2)">
-<rect width="120" height="150" fill="#EFE5E1"/>
-<path d="M32 70 C30 40 46 28 62 28 C80 29 92 42 90 72 L96 150 L28 150 L34 110 Z" fill="#6E4A2E"/>
-<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#BE9472"/>
-<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#DDD0C7"/>
-<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#BE9472"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#BE9472"/>
-<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#D9A982"/>
-<path d="M38 64 C38 42 50 34 66 36 C78 38 84 50 82 62 C76 50 66 46 58 48 C48 50 42 56 38 64 Z" fill="#6E4A2E"/>
-<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#422C1B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#422C1B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#312114" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#312114" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#866850" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
-<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#B96A5C"/>
-<ellipse cx="47" cy="81" rx="5" ry="3" fill="#B96A5C" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#B96A5C" opacity=".18"/>
-</g></svg><figcaption><b>III</b><span>средняя</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи IV">
-<defs><clipPath id="fz3"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
-<g clip-path="url(#fz3)">
-<rect width="120" height="150" fill="#EFE5E1"/>
-<circle cx="60" cy="25" r="13" fill="#3A2519"/><path d="M34 66 C33 42 46 32 60 32 C74 32 87 42 86 66 Z" fill="#3A2519"/>
-<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#A2704D"/>
-<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#2A2626"/>
-<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#A2704D"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#A2704D"/>
-<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#B98058"/>
-<path d="M37 60 C38 44 48 37 60 37 C72 37 82 44 83 60 C76 50 68 46 60 46 C52 46 44 50 37 60 Z" fill="#3A2519"/>
-<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#22160F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#22160F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#1A100B" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#1A100B" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#724F36" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
-<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#9E5546"/>
-<ellipse cx="47" cy="81" rx="5" ry="3" fill="#9E5546" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#9E5546" opacity=".18"/>
-</g></svg><figcaption><b>IV</b><span>оливковая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи V">
-<defs><clipPath id="fz4"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
-<g clip-path="url(#fz4)">
-<rect width="120" height="150" fill="#EFE5E1"/>
-<path d="M29 70 C26 38 44 26 60 26 C78 26 95 38 91 70 C97 90 88 104 96 120 C100 134 92 150 92 150 L28 150 C28 150 20 134 24 120 C32 104 23 90 29 70 Z" fill="#1E1612"/>
-<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#794F33"/>
-<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#DDD0C7"/>
-<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#794F33"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#794F33"/>
-<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#8A5A3B"/>
-<path d="M37 64 C36 42 50 33 62 35 C76 36 85 48 83 64 C78 52 70 46 60 46 C50 47 42 54 37 64 Z" fill="#1E1612"/>
-<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#120D0A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#120D0A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#0D0908" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#0D0908" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#553724" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
-<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#7E4136"/>
-<ellipse cx="47" cy="81" rx="5" ry="3" fill="#7E4136" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#7E4136" opacity=".18"/>
-</g></svg><figcaption><b>V</b><span>смуглая</span></figcaption></figure><figure class="fzf"><svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Тип кожи VI">
-<defs><clipPath id="fz5"><path d="M0 150 V60 A60 60 0 0 1 120 60 V150 Z"/></clipPath></defs>
-<g clip-path="url(#fz5)">
-<rect width="120" height="150" fill="#EFE5E1"/>
-<circle cx="60" cy="46" r="34" fill="#141010"/><circle cx="36" cy="56" r="18" fill="#141010"/><circle cx="84" cy="56" r="18" fill="#141010"/><circle cx="32" cy="76" r="15" fill="#141010"/><circle cx="88" cy="76" r="15" fill="#141010"/><circle cx="44" cy="30" r="16" fill="#141010"/><circle cx="76" cy="30" r="16" fill="#141010"/><circle cx="60" cy="22" r="16" fill="#141010"/><circle cx="36" cy="92" r="11" fill="#141010"/><circle cx="84" cy="92" r="11" fill="#141010"/>
-<path d="M51 92 L51 112 C51 116 69 116 69 112 L69 92 Z" fill="#4A3024"/>
-<path d="M18 150 C20 124 36 112 51 109 C56 118 64 118 69 109 C84 112 100 124 102 150 Z" fill="#2A2626"/>
-<ellipse cx="38.5" cy="72" rx="4" ry="6" fill="#4A3024"/><ellipse cx="81.5" cy="72" rx="4" ry="6" fill="#4A3024"/>
-<path d="M60 40 C74 40 82 52 82 68 C82 88 72 100 60 100 C48 100 38 88 38 68 C38 52 46 40 60 40 Z" fill="#55372A"/>
-<path d="M38 58 C40 44 50 38 60 38 C70 38 80 44 82 58 C74 50 66 47 60 47 C54 47 46 50 38 58 Z" fill="#141010"/>
-<path d="M45 61.5 C48 59 53 58.5 56 60" stroke="#0C0909" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M64 60 C67 58.5 72 59 75 61.5" stroke="#0C0909" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-<path d="M46.5 69 C49 71.5 53 71.5 55.5 69" stroke="#090707" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M64.5 69 C67 71.5 71 71.5 73.5 69" stroke="#090707" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-<path d="M60 70 C59 76 58 80 57 82 C58.5 83.2 61.5 83.2 63 82" stroke="#34221A" stroke-width="1" fill="none" stroke-linecap="round" opacity=".8"/>
-<path d="M53 89 C56 86.5 58.5 87 60 88 C61.5 87 64 86.5 67 89 C64 92.5 56 92.5 53 89 Z" fill="#5E2E28"/>
-<ellipse cx="47" cy="81" rx="5" ry="3" fill="#5E2E28" opacity=".18"/><ellipse cx="73" cy="81" rx="5" ry="3" fill="#5E2E28" opacity=".18"/>
-</g></svg><figcaption><b>VI</b><span>тёмная</span></figcaption></figure></div>
+      <div class="fz"><figure class="fzf"><img src="assets/a85ea78c56.jpg" alt="Тип кожи I по шкале Фитцпатрика" loading="lazy" width="360" height="450"><figcaption><b>I</b><span>очень светлая</span></figcaption></figure><figure class="fzf"><img src="assets/a227a3e4ea.jpg" alt="Тип кожи II по шкале Фитцпатрика" loading="lazy" width="360" height="450"><figcaption><b>II</b><span>светлая</span></figcaption></figure><figure class="fzf"><img src="assets/1e0d208a3a.jpg" alt="Тип кожи III по шкале Фитцпатрика" loading="lazy" width="360" height="450"><figcaption><b>III</b><span>средняя</span></figcaption></figure><figure class="fzf"><img src="assets/d05de7ecad.jpg" alt="Тип кожи IV по шкале Фитцпатрика" loading="lazy" width="360" height="450"><figcaption><b>IV</b><span>оливковая</span></figcaption></figure><figure class="fzf"><img src="assets/a16448d621.jpg" alt="Тип кожи V по шкале Фитцпатрика" loading="lazy" width="360" height="450"><figcaption><b>V</b><span>смуглая</span></figcaption></figure><figure class="fzf"><img src="assets/915ebb464e.jpg" alt="Тип кожи VI по шкале Фитцпатрика" loading="lazy" width="360" height="450"><figcaption><b>VI</b><span>тёмная</span></figcaption></figure></div>
       <p class="c">Шкала Фитцпатрика: шесть типов кожи. Оттенок пигмента подбираю под&nbsp;ваш тип</p>
     </div>
     <div class="safety rv">
@@ -764,7 +662,7 @@ html,body{overflow-x:clip}
     <div class="combo rv">
       <div class="cmbs disc2"><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Скидка −10%</span><span class="ct">2&nbsp;зоны за&nbsp;один визит</span></div><ul class="cz"><li>Любые две процедуры в&nbsp;один день</li><li>Цены зон складываются, скидка на&nbsp;всю сумму</li></ul><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Скидка −15%</span><span class="ct">3&nbsp;зоны и&nbsp;больше</span></div><ul class="cz"><li>Брови, губы и&nbsp;межресничка за&nbsp;один визит</li><li>Между зонами можно отдохнуть</li></ul><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div></div>
     </div>
-    <div class="note"><span><b>−10%</b> на&nbsp;первый визит</span><span>Коррекция через 4–8&nbsp;недель, оплачивается отдельно по&nbsp;прайсу. Её&nbsp;необходимость определяю после оценки зажившего результата</span><span>Оплата наличными или&nbsp;переводом</span></div>
+    <div class="note"><span><b>−10%</b> на&nbsp;первый визит. Скидки не&nbsp;суммируются</span><span>Коррекция через 4–8&nbsp;недель, оплачивается отдельно по&nbsp;прайсу. Её&nbsp;необходимость определяю после оценки зажившего результата</span><span>Оплата наличными или&nbsp;переводом</span></div>
   </div>
 </section>
 
