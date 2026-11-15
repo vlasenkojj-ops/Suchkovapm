@@ -538,8 +538,8 @@ html,body{overflow-x:clip}
 @media (max-width:640px){.fz{grid-template-columns:repeat(3,1fr);gap:14px 12px;margin-top:28px}.fzf b{font-size:19px}.fzf span{font-size:10px;letter-spacing:.06em}}
 /* правки 15.11: 4 документа — сетка 2×2 */
 .certs{grid-template-columns:repeat(2,1fr)}
-/* правки 15.11: на телефоне «в Ярославле» над словом «макияж» */
-@media (max-width:1000px){.hero .word.t{order:0}.hero .arch{order:1}.hero .city{order:2;align-self:flex-end;margin:-.55em 6px -.2em 0;z-index:3}.hero .word.b{order:3;margin-top:0}}
+/* правки 15.11: «в Ярославле» под словом «макияж» и на компьютере */
+@media (min-width:1001px){.hero .city{bottom:auto;top:calc(100% - .35em);left:calc(50% + clamp(40px,6vw,110px))}.hero-stage{margin-bottom:clamp(40px,5vw,80px)}}
 </style>
 </head>
 <body>
