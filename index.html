@@ -542,7 +542,6 @@ html,body{overflow-x:clip}
 @media (min-width:1001px){.hero .city{bottom:auto;top:calc(100% - .35em);left:calc(50% + clamp(40px,6vw,110px))}.hero-stage{margin-bottom:clamp(40px,5vw,80px)}}
 
 /* правки 16.11 */
-p,li,small,figcaption{text-wrap:pretty}
 .two .tp{display:none}
 @media (hover:none),(max-width:700px){.two .hv{display:none}.two .tp{display:inline}}
 @media (min-width:1001px){
@@ -551,6 +550,13 @@ p,li,small,figcaption{text-wrap:pretty}
 .fix-grid>div:nth-child(2){grid-area:list}
 .fix-grid>.ba-row{grid-area:ba;grid-column:auto;align-self:end}
 }
+
+/* правки 17.11: меньше пустоты */
+section:not(.hero){padding-block:clamp(44px,6vw,96px)}
+.revs{align-items:stretch!important;padding-bottom:12px!important}
+.rimg{position:relative;max-height:400px}
+.rimg img{max-height:400px;object-fit:cover;object-position:top}
+.rimg.cut::after{content:"Читать целиком";position:absolute;left:0;right:0;bottom:0;padding:48px 0 14px;text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink,#171616);background:linear-gradient(rgba(255,255,255,0),#fff 70%)}
 </style>
 </head>
 <body>
@@ -936,5 +942,6 @@ document.querySelectorAll('.card').forEach(function(c){
 })();
 </script>
 
+<script>(function(){function f(){document.querySelectorAll('.rimg img').forEach(function(i){var c=function(){var h=i.naturalHeight*i.clientWidth/i.naturalWidth;i.parentNode.classList.toggle('cut',h>402)};i.complete?c():i.addEventListener('load',c)})}document.readyState=='loading'?document.addEventListener('DOMContentLoaded',f):f();addEventListener('resize',f)})();</script>
 </body>
 </html>
