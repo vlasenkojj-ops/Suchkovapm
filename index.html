@@ -464,6 +464,7 @@ section{padding-block:clamp(56px,7vw,104px)}
 .chk{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--stone);cursor:pointer}
 .chk input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--marsala);flex:none}
 .fmsg{font-size:13.5px;color:var(--marsala)!important;min-height:1em}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
 .rules{justify-content:flex-start;gap:8px 0;margin-top:40px;flex-direction:column}
 .rules span{padding-left:18px;position:relative}
 .rules span::before{content:"·";position:absolute;left:4px;color:var(--marsala)}
@@ -797,6 +798,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
         <label class="fld"><span>Имя</span><input name="name" autocomplete="given-name" required></label>
         <label class="fld"><span>Телефон</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
         <label class="chk"><input type="checkbox" name="agree" required><span>Я&nbsp;даю <a href="consent.html" target="_blank" rel="noopener">согласие на&nbsp;обработку персональных данных</a> и&nbsp;ознакомлена с <a href="policy.html" target="_blank" rel="noopener">политикой</a></span></label>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn" type="submit">Отправить</button>
         <p class="fmsg" role="status" aria-live="polite"></p>
       </form>
@@ -925,16 +927,22 @@ document.querySelectorAll('.card').forEach(function(c){
   // фото обучения: цвет по нажатию на телефоне
   $$('.edu-arches figure').forEach(function(f){f.addEventListener('click',function(){var m=f.querySelector('img');showLb(m.getAttribute('src'),m.alt,true)})});
   $$('.cmb').forEach(function(c){c.addEventListener('click',function(e){if(e.target.closest('.go')||matchMedia('(hover:hover)').matches)return;var on=c.classList.contains('on');$$('.cmb.on').forEach(function(x){x.classList.remove('on')});if(!on)c.classList.add('on')})});
-  // форма: честное сообщение, пока нет хостинга
-  var f=$('#cb'),m=$('.fmsg',f);
-  f.addEventListener('submit',function(e){e.preventDefault();
+  // форма: заявка уходит в send.php (на хостинге). На превью (GitHub Pages) обработчика нет — показываем подсказку
+  var f=$('#cb'),m=$('.fmsg',f),busy=false;
+  var PREVIEW='Это превью сайта: заявка пока не отправляется. Чтобы записаться, нажмите «Записаться онлайн» или напишите в Telegram';
+  var FAIL='Не получилось отправить заявку. Пожалуйста, позвоните или\u00a0напишите в\u00a0Telegram: +7\u00a0993\u00a0769-32-33';
+  f.addEventListener('submit',function(e){e.preventDefault();if(busy)return;
     var n=f.name.value.trim(),p=f.phone.value.replace(/\D/g,'');
     if(!n){m.textContent='Укажите имя';f.name.focus();return}
     if(p.length<10){m.textContent='Укажите телефон полностью';f.phone.focus();return}
     if(!f.agree.checked){m.textContent='Отметьте согласие на обработку данных';return}
-    // TODO на хостинге: имя и телефон уходят в сообщения сообщества ВК и на lidasand@mail.ru (оба сервиса ООО «ВК», РФ);
+    // имя и телефон уходят на lidasand@mail.ru и в сообщения сообщества ВК (оба сервиса ООО «ВК», РФ);
     // в Telegram — только уведомление «Новая заявка» без имени и телефона (152-ФЗ, ч. 5 ст. 18)
-    m.textContent='Это превью сайта: заявка пока не отправляется. Чтобы записаться, нажмите «Записаться онлайн» или напишите в Telegram'});
+    if(/github\.io$/.test(location.hostname)||location.protocol==='file:'){m.textContent=PREVIEW;return}
+    busy=true;m.textContent='Отправляю…';
+    fetch('send.php',{method:'POST',body:new FormData(f)}).then(function(r){return r.json()}).then(function(d){
+      if(d&&d.ok){m.textContent='Спасибо! Заявка отправлена, я\u00a0перезвоню в\u00a0течение 2\u00a0часов';f.reset()}else{m.textContent=(d&&d.msg)||FAIL}
+    }).catch(function(){m.textContent=FAIL}).then(function(){busy=false})});
   // cookies
   var c=$('#cookie'),ok=false;try{ok=localStorage.getItem('ck')==='1'}catch(e){}
   if(!ok)c.hidden=false;
