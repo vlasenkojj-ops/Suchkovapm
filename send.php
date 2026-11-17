@@ -63,8 +63,11 @@ if (!empty($cfg['mail_to']) && !empty($cfg['mail_from'])) {
 // 2. ВКонтакте: сообщение от имени сообщества мастеру (нужен ключ сообщества с правом на сообщения
 //    и разрешённые сообщения от сообщества у получателя)
 if (!empty($cfg['vk_token']) && !empty($cfg['vk_peer_id'])) {
-    $r = post_url('https://api.vk.com/method/messages.send', [
-        'peer_id' => $cfg['vk_peer_id'], 'random_id' => random_int(1, PHP_INT_MAX),
+    // получатель: числовой id (peer_id) или короткий адрес страницы (domain), см. dev.vk.com/ru/method/messages.send
+    $to = trim((string)$cfg['vk_peer_id']);
+    $who = ctype_digit($to) ? ['peer_id' => $to] : ['domain' => preg_replace('~^.*vk\.(com|ru)/~', '', $to)];
+    $r = post_url('https://api.vk.com/method/messages.send', $who + [
+        'random_id' => random_int(1, 2147483647), // в пределах int32
         'message' => $text, 'access_token' => $cfg['vk_token'], 'v' => $cfg['vk_api_version'] ?? '5.199']);
     $j = $r ? json_decode($r, true) : null;
     if (isset($j['response'])) $sent = true;
