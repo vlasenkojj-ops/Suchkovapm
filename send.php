@@ -2,7 +2,7 @@
 /**
  * Обработчик формы «Перезвоните мне» для thepm.ru (хостинг reg.ru, PHP 8).
  * Имя и телефон → письмо на почту мастера и сообщение во ВКонтакте (оба сервиса ООО «ВК», РФ).
- * В Telegram уходит ТОЛЬКО сигнал «Новая заявка» без имени и телефона (152-ФЗ, ч. 5 ст. 18).
+ * По SMS мастеру уходит ТОЛЬКО сигнал «Новая заявка» без имени и телефона клиента.
  * Настройки (адреса, токены) — в config.php рядом с этим файлом. Персональные данные в файлы не пишутся.
  */
 header('Content-Type: application/json; charset=utf-8');
@@ -73,11 +73,22 @@ if (!empty($cfg['vk_token']) && !empty($cfg['vk_peer_id'])) {
     if (isset($j['response'])) $sent = true;
 }
 
-// 3. Telegram: только сигнал, БЕЗ имени и телефона
-if (!empty($cfg['tg_token']) && !empty($cfg['tg_chat_id'])) {
-    post_url('https://api.telegram.org/bot' . $cfg['tg_token'] . '/sendMessage', [
-        'chat_id' => $cfg['tg_chat_id'],
-        'text' => "🔔 Новая заявка с сайта thepm.ru ($when МСК). Имя и телефон — на почте и во ВКонтакте"]);
+// 3. SMS мастеру через SMS Aero: только сигнал, БЕЗ имени и телефона клиента
+//    документация: smsaero.ru/integration/documentation/api/ (GET /v2/sms/send, Basic Auth: email + API-ключ)
+if (!empty($cfg['sms_email']) && !empty($cfg['sms_api_key']) && !empty($cfg['sms_phone'])) {
+    $q = http_build_query(['number' => preg_replace('/\D+/', '', $cfg['sms_phone']),
+        'text' => 'Новая заявка с сайта thepm.ru. Данные на почте и во ВК',
+        'sign' => $cfg['sms_sign'] ?? 'SMS Aero']);
+    $url = 'https://gate.smsaero.ru/v2/sms/send?' . $q;
+    $auth = $cfg['sms_email'] . ':' . $cfg['sms_api_key'];
+    if (function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 10, CURLOPT_USERPWD => $auth]);
+        curl_exec($ch); curl_close($ch);
+    } else {
+        @file_get_contents($url, false, stream_context_create(['http' => ['timeout' => 10,
+            'header' => 'Authorization: Basic ' . base64_encode($auth)]]));
+    }
 }
 
 if (!$sent) out(false, 'Не получилось отправить заявку. Позвоните, пожалуйста: +7 993 769-32-33');
