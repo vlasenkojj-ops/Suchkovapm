@@ -976,7 +976,6 @@ document.querySelectorAll('.card').forEach(function(c){
     if(p.length<10){m.textContent='Укажите телефон полностью';f.phone.focus();return}
     if(!f.agree.checked){m.textContent='Отметьте согласие на обработку данных';return}
     // имя и телефон уходят на lidasand@mail.ru и в сообщения сообщества ВК (оба сервиса ООО «ВК», РФ);
-    // мастеру по SMS — только сигнал «Новая заявка» без имени и телефона
     if(/github\.io$/.test(location.hostname)||location.protocol==='file:'){m.textContent=PREVIEW;return}
     busy=true;m.textContent='Отправляю…';
     fetch('send.php',{method:'POST',body:new FormData(f)}).then(function(r){return r.json()}).then(function(d){
