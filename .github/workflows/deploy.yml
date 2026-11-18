@@ -1,0 +1,54 @@
+# Выкладка сайта на хостинг reg.ru (thepm.ru) по FTP.
+# Запускается только вручную (вкладка Actions → «Выкладка на thepm.ru» → Run workflow),
+# никогда автоматически при правках: сайт выкладываем после согласования с Лидией.
+# Пароли и ключи берутся из секретов репозитория (Settings → Secrets and variables → Actions).
+name: Выкладка на thepm.ru
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Только проверить подключение, ничего не загружать'
+        type: boolean
+        default: true
+      protocol:
+        description: 'Протокол (ftps — шифрованный, ftp — если ftps не работает)'
+        type: choice
+        options: [ftps, ftp]
+        default: ftps
+
+concurrency:
+  group: deploy-thepm
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Собрать боевую версию
+        run: |
+          python3 tools/build_prod.py . site.zip
+          mkdir dist && cd dist && unzip -q ../site.zip && cd ..
+          python3 tools/make_config.py config.sample.php dist/config.php
+          ls -la dist
+        env:
+          VK_TOKEN: ${{ secrets.VK_TOKEN }}
+          VK_PEER_ID: ${{ secrets.VK_PEER_ID }}
+          SMS_EMAIL: ${{ secrets.SMS_EMAIL }}
+          SMS_API_KEY: ${{ secrets.SMS_API_KEY }}
+          SMS_PHONE: ${{ secrets.SMS_PHONE }}
+          SMS_SIGN: ${{ secrets.SMS_SIGN }}
+
+      - name: Загрузить на хостинг
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ inputs.protocol }}
+          local-dir: ./dist/
+          server-dir: www/thepm.ru/
+          dry-run: ${{ inputs.dry_run }}
+          log-level: standard
