@@ -33,6 +33,7 @@ files['sitemap.xml'] = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="
     + '</urlset>\n').encode()
 # правила редиректов по справке reg.ru (help.reg.ru/support/hosting/redirekty/...)
 files['.htaccess'] = b'''AddDefaultCharset UTF-8
+ErrorDocument 404 /404.html
 RewriteEngine On
 # www.thepm.ru -> thepm.ru
 RewriteCond %{HTTP_HOST} ^www\\.thepm\\.ru$ [NC]

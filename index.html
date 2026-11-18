@@ -7,7 +7,22 @@
 <meta name="format-detection" content="telephone=no">
 <title>Перманентный макияж и татуаж в Ярославле — брови, губы, межресничка · Лидия Сучкова</title>
 <meta name="description" content="Перманентный макияж (татуаж) бровей, губ и межреснички в центре Ярославля. Пудровое напыление, волоски, удаление старого татуажа. Цены, работы до и после, онлайн-запись.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2732%27 fill=%27%237A2638%27/%3E%3Ctext x=%2732%27 y=%2743%27 text-anchor=%27middle%27 font-family=%27Georgia,serif%27 font-size=%2730%27 fill=%27%23fff%27%3EЛС%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-120.png" type="image/png" sizes="120x120">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#FAF9F7">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Лидия Сучкова · перманентный макияж">
+<meta property="og:title" content="Перманентный макияж в Ярославле · Лидия Сучкова">
+<meta property="og:description" content="Брови, губы и межресничка в центре Ярославля. Пудровое напыление, волоски, исправление старого татуажа. Цены, работы до и после, онлайн-запись">
+<meta property="og:url" content="https://thepm.ru/">
+<meta property="og:image" content="https://thepm.ru/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Лидия Сучкова, перманентный макияж в Ярославле">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* шрифты локально, без Google Fonts (нет передачи IP посетителей за рубеж) */
@@ -504,6 +519,11 @@ footer .fnote{display:block;margin-top:40px;padding-top:24px;border-top:1px soli
 .cookie[hidden]{display:none}
 .cookie p{margin:0;color:var(--stone)}
 .cookie .btn{flex:none}
+.cookie{flex-direction:column;align-items:stretch;gap:14px}
+.cookie .cbtn{display:flex;gap:10px;flex-wrap:wrap}
+.cookie .cbtn .btn{flex:1 1 auto;justify-content:center}
+footer .ckset{display:block;background:none;border:0;padding:4px 0;font:inherit;font-size:14px;color:var(--ink);cursor:pointer;text-align:left}
+footer .ckset:hover{color:var(--marsala)}
 .mbar button.btn{font:inherit;font-size:13px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border:0}
 @media (max-width:420px){.h2{font-size:10vw}.h2.long{font-size:8.4vw}.book .h2{font-size:10vw}}
 @media (max-width:1000px){.principles{grid-template-columns:1fr 1fr}.safety,.studio-grid,.ways{grid-template-columns:1fr}footer .wrap.fgrid{grid-template-columns:1fr 1fr}.combo{border-radius:28px}}
@@ -842,7 +862,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
     <div><div class="logo">Лидия Сучкова</div><p>Мастер перманентного макияжа · Ярославль</p><p>ИП Сучкова Лидия Николаевна<br>ИНН 861710212280<br>ОГРНИП 323861700061609</p></div>
     <div><span class="fh">Связь</span><a href="https://dikidi.net/2052677" target="_blank" rel="noopener">Онлайн-запись DIKIDI</a><a href="https://vk.ru/club242414607" target="_blank" rel="noopener">ВКонтакте</a><a href="https://t.me/lidiasoft" target="_blank" rel="noopener">Telegram @lidiasoft</a><a href="https://t.me/lidiasoftpm" target="_blank" rel="noopener">Telegram-канал</a><a href="tel:+79937693233">+7 993 769-32-33</a></div>
     <div><span class="fh">Instagram*</span><a href="https://www.instagram.com/suchkova.permanent/" target="_blank" rel="noopener">@suchkova.permanent</a><small>*Instagram принадлежит компании Meta, признанной в&nbsp;России экстремистской организацией</small></div>
-    <div><span class="fh">Документы</span><a href="policy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a><a href="consent.html" target="_blank" rel="noopener">Согласие на&nbsp;обработку персональных данных</a><a href="cookies.html" target="_blank" rel="noopener">Политика cookies</a></div>
+    <div><span class="fh">Документы</span><a href="policy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a><a href="consent.html" target="_blank" rel="noopener">Согласие на&nbsp;обработку персональных данных</a><a href="cookies.html" target="_blank" rel="noopener">Политика cookies</a><button class="ckset" type="button" id="cookie-set">Настройки cookies</button></div>
   </div>
   <div class="wrap fnote">Информация на&nbsp;сайте не&nbsp;является публичной офертой. Перед процедурой проводится консультация, возможны противопоказания</div>
 </footer>
@@ -851,8 +871,21 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
   <p>Работаю без&nbsp;администратора: если не&nbsp;отвечаю сразу&nbsp;— я&nbsp;на&nbsp;процедуре и&nbsp;обязательно отвечу в&nbsp;течение 2&nbsp;часов</p></div></div>
 <div class="sheet" id="lb" hidden><div class="sheet-in lb" role="dialog" aria-modal="true" aria-label="Документ"><button class="x" type="button" data-close aria-label="Закрыть">×</button><img alt=""></div></div>
 <div class="sheet" id="doc" hidden><div class="sheet-in" role="dialog" aria-modal="true" aria-label="Документ"><button class="x" type="button" data-close aria-label="Закрыть">×</button><h3>Документ готовится</h3><p>Политика обработки персональных данных, согласие и&nbsp;политика cookies появятся здесь на&nbsp;следующем шаге</p></div></div>
-<div class="cookie" id="cookie" hidden><p>Сайт использует cookies, чтобы работать корректно. Подробнее в <a href="cookies.html" target="_blank" rel="noopener">политике cookies</a></p><button class="btn sm" type="button" id="cookie-ok">Понятно</button></div>
+<div class="cookie" id="cookie" role="dialog" aria-label="Настройки cookies" hidden><p>Сайт использует необходимые cookies, чтобы работать. Аналитические cookies Яндекс Метрики включаем только с&nbsp;вашего согласия. Подробнее в&nbsp;<a href="cookies.html" target="_blank" rel="noopener">политике cookies</a></p><div class="cbtn"><button class="btn sm" type="button" id="cookie-all">Принять все</button><button class="btn line sm" type="button" id="cookie-nec">Только необходимые</button></div></div>
 
+<script>
+/* Яндекс Метрика: грузится ТОЛЬКО после «Принять все» в баннере cookies.
+   YM_ID — номер счётчика из кабинета metrika.yandex.ru (вписать, когда Лидия создаст счётчик). Пока 0 — ничего не грузится.
+   На превью (github.io) и в файле с компьютера не работает никогда */
+var YM_ID=0;
+function ymLoad(){if(!YM_ID||window.ymOn||/github\.io$/.test(location.hostname)||location.protocol==='file:')return;window.ymOn=1;
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+  ym(YM_ID,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false})}
+function goal(n){if(n&&window.ymOn&&window.ym)ym(YM_ID,'reachGoal',n)}
+/* цели: booking — DIKIDI, call — телефон, vk, telegram, route — маршрут, lead — заявка с формы */
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');
+  goal(/dikidi\.net/.test(h)?'booking':/^tel:/.test(h)?'call':/vk\.(ru|com)/.test(h)?'vk':/t\.me\//.test(h)?'telegram':/yandex\.ru\/maps/.test(h)?'route':'')},true);
+</script>
 <script>
 document.documentElement.classList.add('js');
 (function(){
@@ -947,12 +980,18 @@ document.querySelectorAll('.card').forEach(function(c){
     if(/github\.io$/.test(location.hostname)||location.protocol==='file:'){m.textContent=PREVIEW;return}
     busy=true;m.textContent='Отправляю…';
     fetch('send.php',{method:'POST',body:new FormData(f)}).then(function(r){return r.json()}).then(function(d){
-      if(d&&d.ok){m.textContent='Спасибо! Заявка отправлена, я\u00a0перезвоню в\u00a0течение 2\u00a0часов';f.reset()}else{m.textContent=(d&&d.msg)||FAIL}
+      if(d&&d.ok){m.textContent='Спасибо! Заявка отправлена, я\u00a0перезвоню в\u00a0течение 2\u00a0часов';f.reset();goal('lead')}else{m.textContent=(d&&d.msg)||FAIL}
     }).catch(function(){m.textContent=FAIL}).then(function(){busy=false})});
   // cookies
-  var c=$('#cookie'),ok=false;try{ok=localStorage.getItem('ck')==='1'}catch(e){}
-  if(!ok)c.hidden=false;
-  $('#cookie-ok').addEventListener('click',function(){c.hidden=true;try{localStorage.setItem('ck','1')}catch(e){}});
+  // ck: 'all' — разрешена Яндекс Метрика, 'nec' — только необходимые. Старое значение '1' (кнопка «Понятно») — спрашиваем заново
+  var c=$('#cookie'),ck=null;try{ck=localStorage.getItem('ck')}catch(e){}
+  if(ck!=='all'&&ck!=='nec')c.hidden=false;else if(ck==='all')ymLoad();
+  function setCk(v){var was=ck;ck=v;c.hidden=true;try{localStorage.setItem('ck',v)}catch(e){}
+    if(v==='all')ymLoad();
+    else if(was==='all'){document.cookie.split(';').forEach(function(x){var k=x.split('=')[0].trim();if(/^_ym/.test(k)){['',location.hostname,'.'+location.hostname].forEach(function(dm){document.cookie=k+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+(dm?';domain='+dm:'')})}});location.reload()}}
+  $('#cookie-all').addEventListener('click',function(){setCk('all')});
+  $('#cookie-nec').addEventListener('click',function(){setCk('nec')});
+  $('#cookie-set').addEventListener('click',function(){c.hidden=false;$('#cookie-all').focus()});
 })();
 </script>
 
