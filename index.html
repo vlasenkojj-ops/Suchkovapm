@@ -30,6 +30,9 @@
 @font-face{font-family:"Playfair Display";src:url("fonts/playfair-italic.woff2") format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
 @font-face{font-family:"Jost";src:url("fonts/jost.ttf") format("truetype");font-weight:100 900;font-display:swap}
 @font-face{font-family:"Great Vibes";src:url("fonts/greatvibes.woff2") format("woff2");font-weight:400;font-display:swap}
+
+/* 18.11 Юля: на телефоне каждое фото работ ровно по ширине экрана (вариант А) */
+@media (max-width:560px){.strip{align-items:flex-start;gap:14px}.strip figure{flex:0 0 calc(100vw - 40px)!important;scroll-snap-align:center}.strip .im{height:auto!important;width:100%;border-radius:22px!important}.strip img{width:100%!important;height:auto!important;object-fit:contain}}
 </style>
 <style>
 /* Layout: модная контрастная подача — огромные заголовки капсом, арки (как зеркала в студии), пудровые плашки, рукописные подписи марсалой. Один светлый мир, тёмной темы нет намеренно. */
