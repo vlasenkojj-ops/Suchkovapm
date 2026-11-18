@@ -825,6 +825,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
         <label class="fld"><span>Телефон</span><input class="ym-disable-keys" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
         <label class="chk"><input type="checkbox" name="agree" required><span>Я&nbsp;даю <a href="consent.html" target="_blank" rel="noopener">согласие на&nbsp;обработку персональных данных</a> и&nbsp;ознакомлена с <a href="policy.html" target="_blank" rel="noopener">политикой</a></span></label>
         <input class="hp ym-disable-keys" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="cid" id="cid">
         <button class="btn" type="submit">Отправить</button>
         <p class="fmsg" role="status" aria-live="polite"></p>
       </form>
@@ -880,7 +881,9 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 var YM_ID=0;
 function ymLoad(){if(!YM_ID||window.ymOn||/github\.io$/.test(location.hostname)||location.protocol==='file:')return;window.ymOn=1;
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-  ym(YM_ID,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true})}
+  ym(YM_ID,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+  /* номер посетителя Метрики (ClientID) уходит вместе с заявкой: по нему Лидия потом отмечает, кто пришёл на процедуру (офлайн-конверсии для Директа) */
+  ym(YM_ID,'getClientID',function(id){var c=document.getElementById('cid');if(c&&id)c.value=id})}
 function goal(n){if(n&&window.ymOn&&window.ym)ym(YM_ID,'reachGoal',n)}
 /* цели: booking — DIKIDI, call — телефон, vk, telegram, route — маршрут, lead — заявка с формы */
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');

@@ -37,6 +37,9 @@ $name  = preg_replace('/[\r\n\t]+/', ' ', strip_tags($name));
 $phone = preg_replace('/[^\d+\-() ]/', '', $phone);
 $when  = (new DateTime('now', new DateTimeZone('Europe/Moscow')))->format('d.m.Y H:i');
 $text  = "Новая заявка с сайта thepm.ru\nИмя: $name\nТелефон: $phone\nВремя (МСК): $when\nСогласие на обработку ПД: да";
+// номер посетителя Яндекс Метрики (ClientID) — есть, только если посетитель принял аналитические cookies; нужен для отметки «пришла на процедуру»
+$cid = preg_replace('/\D+/', '', (string)($_POST['cid'] ?? ''));
+if ($cid !== '' && strlen($cid) <= 30) $text .= "\nНомер посетителя в Метрике: $cid";
 
 function post_url($url, array $data) {
     if (function_exists('curl_init')) {
