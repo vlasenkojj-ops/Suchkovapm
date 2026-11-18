@@ -821,10 +821,10 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
       <div class="way"><span class="wn">02</span><h3>Написать мастеру</h3><p>ВКонтакте или&nbsp;Telegram</p><div class="wbtn"><a class="btn line sm" href="https://vk.ru/club242414607" target="_blank" rel="noopener">ВКонтакте</a><a class="btn line sm" href="https://t.me/lidiasoft" target="_blank" rel="noopener">Telegram</a></div>
         <a class="btn sm callbtn" href="tel:+79937693233">Позвонить</a><small>+7 993 769-32-33. Если я&nbsp;на&nbsp;процедуре и&nbsp;не&nbsp;взяла трубку&nbsp;— перезвоню в&nbsp;течение 2&nbsp;часов</small></div>
       <form class="way" id="cb" novalidate><span class="wn">03</span><h3>Перезвоните мне</h3>
-        <label class="fld"><span>Имя</span><input name="name" autocomplete="given-name" required></label>
-        <label class="fld"><span>Телефон</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
+        <label class="fld"><span>Имя</span><input class="ym-disable-keys" name="name" autocomplete="given-name" required></label>
+        <label class="fld"><span>Телефон</span><input class="ym-disable-keys" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
         <label class="chk"><input type="checkbox" name="agree" required><span>Я&nbsp;даю <a href="consent.html" target="_blank" rel="noopener">согласие на&nbsp;обработку персональных данных</a> и&nbsp;ознакомлена с <a href="policy.html" target="_blank" rel="noopener">политикой</a></span></label>
-        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="hp ym-disable-keys" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn" type="submit">Отправить</button>
         <p class="fmsg" role="status" aria-live="polite"></p>
       </form>
@@ -874,13 +874,13 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 <div class="cookie" id="cookie" role="dialog" aria-label="Настройки cookies" hidden><p>Сайт использует необходимые cookies, чтобы работать. Аналитические cookies Яндекс Метрики включаем только с&nbsp;вашего согласия. Подробнее в&nbsp;<a href="cookies.html" target="_blank" rel="noopener">политике cookies</a></p><div class="cbtn"><button class="btn sm" type="button" id="cookie-all">Принять все</button><button class="btn line sm" type="button" id="cookie-nec">Только необходимые</button></div></div>
 
 <script>
-/* Яндекс Метрика: грузится ТОЛЬКО после «Принять все» в баннере cookies.
+/* Яндекс Метрика: грузится ТОЛЬКО после «Принять все» в баннере cookies. Вебвизор включён, поля формы помечены ym-disable-keys (не записываются).
    YM_ID — номер счётчика из кабинета metrika.yandex.ru (вписать, когда Лидия создаст счётчик). Пока 0 — ничего не грузится.
    На превью (github.io) и в файле с компьютера не работает никогда */
 var YM_ID=0;
 function ymLoad(){if(!YM_ID||window.ymOn||/github\.io$/.test(location.hostname)||location.protocol==='file:')return;window.ymOn=1;
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-  ym(YM_ID,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false})}
+  ym(YM_ID,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true})}
 function goal(n){if(n&&window.ymOn&&window.ym)ym(YM_ID,'reachGoal',n)}
 /* цели: booking — DIKIDI, call — телефон, vk, telegram, route — маршрут, lead — заявка с формы */
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');
