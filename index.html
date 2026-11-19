@@ -587,6 +587,47 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .rimg.cut::after{content:"Читать целиком";position:absolute;left:0;right:0;bottom:0;padding:48px 0 14px;text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink,#171616);background:linear-gradient(rgba(255,255,255,0),#fff 70%)}
 /* правки 17.11: меньше пустоты у «Документов на материалы» и перед ценами */
 @media (min-width:1001px){.safety .certs{grid-template-columns:repeat(4,1fr);gap:12px}.safety .cert span{font-size:9.5px;letter-spacing:.1em}#approach{padding-bottom:40px}#services{padding-top:48px}}
+/* правки 19.11 (замечания тренера): кнопки и оффер в первом экране, акценты скидок */
+.hoffer{text-decoration:none;box-shadow:0 18px 34px -18px rgba(94,28,43,.6)}
+.hs-r .offer{margin:12px 0 0}
+@media (min-width:1001px){
+.hero{--wf:min(9.6vw,18vh,150px);--aw:clamp(230px,min(28vw,calc((100vh - 330px)*.73)),420px);--st:calc(34px + var(--wf)*.92);padding-top:96px;padding-bottom:calc(min(7vw,12vh,112px)*.95)}
+.hero .word{font-size:max(60px,var(--wf))}
+.arch{width:var(--aw)}
+.hero-stage{margin-bottom:0!important}
+.hero .wrap{position:relative}
+.hero-sub{position:absolute;left:max(20px,env(safe-area-inset-left,0px));right:max(20px,env(safe-area-inset-right,0px));top:var(--st);margin:0;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;z-index:3}
+.hs-l,.hs-r{pointer-events:auto;width:calc(50% - var(--aw)/2 - 36px)}
+.hs-l{padding-top:clamp(8px,4vh,48px)}
+.hs-l p{font-size:clamp(13.5px,1.9vh,15px);max-width:34ch;margin:0 0 clamp(14px,2.6vh,22px)}
+.hs-l .hero-btns{margin:0;width:min(300px,100%)}
+.hs-r{display:flex;flex-direction:column;align-items:flex-end;text-align:right;padding-top:clamp(120px,19vh,160px)}
+.hs-r .offer{font-size:19px}
+.badge{top:calc(96px + var(--st));right:max(20px,calc((100vw - 1280px)/2 + 20px))}
+.hero .city{font-size:clamp(46px,min(7vw,12vh),112px)}
+}
+@media (max-width:1000px){
+.hero-sub{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:22px}
+.hs-r{order:-1;display:flex;flex-direction:column;align-items:center}
+.hs-r .offer{display:none}
+.hs-l{display:flex;flex-direction:column;align-items:center;gap:18px}
+.hs-l p{margin:0}
+}
+@media (max-width:560px){
+.hero{padding-top:calc(64px + env(safe-area-inset-top,0px))}
+.hero .kicker{font-size:10px;letter-spacing:.12em;margin-bottom:2px}
+.arch{width:min(60vw,calc((100svh - 400px)*.73));min-width:180px}
+.hero .city{font-size:clamp(36px,10vw,52px)}
+.hero-sub{margin-top:10px;gap:14px}
+.hs-l p{font-size:14px}
+}
+/* скидки за зоны на бордовом фоне */
+.cmbs.disc2 .cmb{background:var(--marsala);border-color:var(--marsala);color:#fff}
+.cmbs.disc2 .cmb::before{background:#fff}
+.cmbs.disc2 .cn{color:#fff}
+.cmbs.disc2 .ct{color:rgba(255,255,255,.78)}
+.cmbs.disc2 .cz li{color:rgba(255,255,255,.92)}
+.cmbs.disc2 .go{color:#fff}
 </style>
 </head>
 <body>
@@ -615,7 +656,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 <main id="top">
 <section class="hero">
   <a class="badge" href="https://dikidi.net/2052677" target="_blank" rel="noopener" aria-label="Записаться онлайн">
-    <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="c" d="M60,60 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><text font-family="Jost, sans-serif" font-size="10.5" letter-spacing="3.2" fill="#171616"><textPath href="#c">ЗАПИСАТЬСЯ ОНЛАЙН · −10% НА&nbsp;ПЕРВЫЙ ВИЗИТ ·</textPath></text></svg>
+    <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="c" d="M60,60 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><text font-family="Jost, sans-serif" font-size="9.6" fill="#171616"><textPath href="#c" textLength="296" lengthAdjust="spacing">ЗАПИСАТЬСЯ ОНЛАЙН · −10% НА&nbsp;ПЕРВЫЙ ВИЗИТ · </textPath></text></svg>
     <span class="dot">→</span>
   </a>
   <div class="wrap">
@@ -627,12 +668,12 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
       <div class="city" aria-hidden="true">в&nbsp;Ярославле</div>
     </div>
     <div class="hero-sub">
-      <p>Брови, губы и&nbsp;межресничка. Естественно, с&nbsp;подбором техники и&nbsp;оттенка под&nbsp;ваше лицо и&nbsp;тип кожи. Делаю первичный перманент и&nbsp;исправляю старый татуаж</p>
+      <div class="hs-l"><p>Брови, губы и&nbsp;межресничка. Естественно, с&nbsp;подбором техники и&nbsp;оттенка под&nbsp;ваше лицо и&nbsp;тип кожи. Делаю первичный перманент и&nbsp;исправляю старый татуаж</p>
       <div class="hero-btns">
         <a class="btn" href="https://dikidi.net/2052677" target="_blank" rel="noopener">Записаться →</a>
         <a class="btn line" href="#services">Посмотреть цены</a>
-      </div>
-      <p class="r offer"><b>−10%</b> на&nbsp;первый визит,<br>приветственные цены<br>до&nbsp;31 декабря 2026&nbsp;года</p>
+      </div></div>
+      <div class="hs-r"><a class="disc hoffer" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><b>−10%</b> на&nbsp;первый визит</a><p class="offer">Приветственные цены<br>до&nbsp;31 декабря 2026&nbsp;года</p></div>
     </div>
   </div>
 </section>
@@ -709,7 +750,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
     <div class="combo rv">
       <div class="cmbs disc2"><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Скидка −10%</span><span class="ct">2&nbsp;зоны за&nbsp;один визит</span></div><ul class="cz"><li>Любые две процедуры в&nbsp;один день</li><li>Цены зон складываются, скидка на&nbsp;всю сумму</li></ul><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div><div class="cmb" tabindex="0"><div class="cmb-top"><span class="cn">Скидка −15%</span><span class="ct">3&nbsp;зоны</span></div><ul class="cz"><li>Брови, губы и&nbsp;межресничка за&nbsp;один визит</li><li>Между зонами можно отдохнуть</li></ul><a class="go" href="https://dikidi.net/2052677" target="_blank" rel="noopener"><span>Записаться</span><span>→</span></a></div></div>
     </div>
-    <div class="note"><span><b>−10%</b> на&nbsp;первый визит. Суммируется со&nbsp;скидкой за&nbsp;зоны</span><span>Коррекция через 4–8&nbsp;недель, оплачивается отдельно по&nbsp;прайсу. Её&nbsp;необходимость определяю после оценки зажившего результата</span><span>Оплата наличными или&nbsp;переводом</span></div>
+    <div class="note"><span><b>−10%</b> на&nbsp;первый визит. Суммируется со&nbsp;скидкой за&nbsp;зоны</span><span>Коррекция через 4–8&nbsp;недель, оплачивается отдельно по&nbsp;прайсу. Её&nbsp;необходимость определяю после оценки зажившего результата</span></div>
   </div>
 </section>
 
