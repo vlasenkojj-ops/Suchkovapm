@@ -657,7 +657,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .hs-r{order:-1;align-items:flex-start;text-align:left;padding:0;flex-direction:row;gap:18px;align-items:center}
 .hs-r .offer{margin:0;font-size:17px}
 .hs-r .offer br{display:none}
-.badge{display:block;background:var(--porcelain,#FAF8F6);border-radius:50%;box-shadow:0 18px 40px -20px rgba(23,22,22,.45);top:calc(96px + var(--aw)*.92);right:calc(max(20px,(100vw - 1280px)/2 + 20px) + var(--aw) - 70px)}
+.badge{display:block;top:calc(96px + var(--aw)*.92);right:calc(max(20px,(100vw - 1280px)/2 + 20px) + var(--aw) - 70px)}
 }
 /* правки 19.11: черта цены на одном уровне во всех карточках */
 .card .price{margin-top:12px}
@@ -671,6 +671,10 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .cur-r.hov{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(124,36,56,.1);border-color:rgba(124,36,56,.3)}
 .cur-r.down{width:28px;height:28px;margin:-14px 0 0 -14px}
 @media (hover:hover) and (pointer:fine){html.has-cur,html.has-cur a,html.has-cur button,html.has-cur [tabindex],html.has-cur summary,html.has-cur label{cursor:none}html.has-cur input,html.has-cur textarea{cursor:text}.cur.on,.cur-r.on{opacity:1}}
+/* правки 19.11: круглый бейдж бордовый с белыми буквами */
+.badge{background:var(--marsala);border-radius:50%;box-shadow:0 20px 40px -18px rgba(94,28,43,.6)}
+.badge text{fill:#fff}
+.badge .dot{background:#fff;color:var(--marsala)}
 </style>
 </head>
 <body>
