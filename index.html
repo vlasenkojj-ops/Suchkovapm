@@ -675,6 +675,9 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .badge{background:var(--marsala);border-radius:50%;box-shadow:0 20px 40px -18px rgba(94,28,43,.6)}
 .badge text{fill:#fff}
 .badge .dot{background:#fff;color:var(--marsala)}
+/* правки 19.11: нижняя панель на телефоне — «Записаться» и «Посмотреть цены» */
+.mbar .btn{letter-spacing:.1em;font-size:12px;white-space:nowrap}
+@media (hover:none){.mbar .btn::before{display:none}.mbar .btn.line:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}}
 </style>
 </head>
 <body>
@@ -683,7 +686,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 <div class="intro" aria-hidden="true"><span>Lidia Suchkova</span></div>
 <div class="ribbon">Сайт в&nbsp;работе · превью</div>
 <div class="fbook"><a class="fprice" href="#services">Посмотреть цены</a><a class="fgo" href="https://dikidi.net/2052677" target="_blank" rel="noopener" aria-label="Записаться онлайн">Записаться →</a></div>
-<div class="mbar"><a class="btn" href="https://dikidi.net/2052677" target="_blank" rel="noopener">Записаться</a><button class="btn line" type="button" data-write>Написать</button></div>
+<div class="mbar"><a class="btn" href="https://dikidi.net/2052677" target="_blank" rel="noopener">Записаться</a><a class="btn line" href="#services">Посмотреть цены</a></div>
 
 <header>
   <div class="wrap nav">
