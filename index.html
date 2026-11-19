@@ -628,6 +628,16 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .cmbs.disc2 .ct{color:rgba(255,255,255,.78)}
 .cmbs.disc2 .cz li{color:rgba(255,255,255,.92)}
 .cmbs.disc2 .go{color:#fff}
+/* правки 19.11: фото натуральных бровей в блоке страхов */
+.fear-ph{margin:32px 0 0;max-width:280px}
+.fear-ph img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:999px 999px 0 0}
+.fear-ph figcaption{margin-top:10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone)}
+@media (max-width:1000px){.fear-ph{max-width:190px;margin:22px auto 0;text-align:center}}
+/* правки 19.11: кнопка «Записаться» всегда на экране (на телефоне это нижняя панель) */
+.fbook{position:fixed;right:max(24px,env(safe-area-inset-right,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:75;display:inline-flex;align-items:center;height:56px;padding:0 30px;border-radius:999px;background:var(--marsala);color:#fff;text-decoration:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 22px 40px -18px rgba(94,28,43,.7);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease),background .3s}
+.fbook.on{opacity:1;transform:none;pointer-events:auto}
+.fbook:hover{background:#171616}
+@media (max-width:560px){.fbook{display:none}}
 </style>
 </head>
 <body>
@@ -635,6 +645,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 
 <div class="intro" aria-hidden="true"><span>Lidia Suchkova</span></div>
 <div class="ribbon">Сайт в&nbsp;работе · превью</div>
+<a class="fbook" href="https://dikidi.net/2052677" target="_blank" rel="noopener" aria-label="Записаться онлайн">Записаться →</a>
 <div class="mbar"><a class="btn" href="https://dikidi.net/2052677" target="_blank" rel="noopener">Записаться</a><button class="btn line" type="button" data-write>Написать</button></div>
 
 <header>
@@ -691,6 +702,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
       <div class="eyebrow">Узнаёте себя?</div>
       <h2 class="h2" style="margin-top:18px">Хотите перманент <span class="sig">но&nbsp;боитесь?</span></h2>
       <p class="two">Эти фразы я&nbsp;слышу на&nbsp;каждой консультации<br><span class="hv">Наведите или&nbsp;нажмите на&nbsp;страх, чтобы увидеть короткий ответ</span><span class="tp">Нажмите на&nbsp;страх, чтобы увидеть ответ</span></p>
+      <figure class="fear-ph"><img src="assets/77b339df42.jpg" alt="Естественные брови после перманента, аппаратные волоски" loading="lazy"><figcaption>Брови, аппаратные волоски</figcaption></figure>
     </div>
     <div class="rv">
       <div class="fear" tabindex="0"><span class="mark">“</span><div><div class="q">Брови станут зелёными или&nbsp;красными</div><div class="a">Сертифицированные пигменты и&nbsp;подбор оттенка под&nbsp;тип кожи</div></div></div>
@@ -1042,5 +1054,8 @@ document.querySelectorAll('.card').forEach(function(c){
 </script>
 
 <script>(function(){function f(){document.querySelectorAll('.rimg img').forEach(function(i){var c=function(){var h=i.naturalHeight*i.clientWidth/i.naturalWidth;i.parentNode.classList.toggle('cut',h>402)};i.complete?c():i.addEventListener('load',c)})}document.readyState=='loading'?document.addEventListener('DOMContentLoaded',f):f();addEventListener('resize',f)})();</script>
+<script>
+(function(){var f=document.querySelector('.fbook');if(!f)return;function t(){f.classList.toggle('on',window.scrollY>window.innerHeight*.6)}window.addEventListener('scroll',t,{passive:true});t()})();
+</script>
 </body>
 </html>
