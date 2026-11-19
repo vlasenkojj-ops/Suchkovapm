@@ -657,13 +657,20 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .hs-r{order:-1;align-items:flex-start;text-align:left;padding:0;flex-direction:row;gap:18px;align-items:center}
 .hs-r .offer{margin:0;font-size:17px}
 .hs-r .offer br{display:none}
-.badge{display:none}
+.badge{display:block;background:var(--porcelain,#FAF8F6);border-radius:50%;box-shadow:0 18px 40px -20px rgba(23,22,22,.45);top:calc(96px + var(--aw)*.92);right:calc(max(20px,(100vw - 1280px)/2 + 20px) + var(--aw) - 70px)}
 }
 /* правки 19.11: черта цены на одном уровне во всех карточках */
 .card .price{margin-top:12px}
 .card .till{margin-top:auto;padding-top:10px}
 /* правки 19.11: кнопки в блоке записи одного размера */
 .way .btn:not(.line){height:56px;font-size:13px;letter-spacing:.18em;padding:0 20px;width:100%;justify-content:center}
+/* правки 19.11: свой курсор — точка-пигмент и кольцо (только мышь) */
+.cur,.cur-r{position:fixed;left:0;top:0;pointer-events:none;z-index:9999;border-radius:50%;opacity:0;transition:opacity .3s}
+.cur{width:8px;height:8px;margin:-4px 0 0 -4px;background:var(--marsala)}
+.cur-r{width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid rgba(124,36,56,.55);transition:opacity .3s,width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .35s,border-color .35s}
+.cur-r.hov{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(124,36,56,.1);border-color:rgba(124,36,56,.3)}
+.cur-r.down{width:28px;height:28px;margin:-14px 0 0 -14px}
+@media (hover:hover) and (pointer:fine){html.has-cur,html.has-cur a,html.has-cur button,html.has-cur [tabindex],html.has-cur summary,html.has-cur label{cursor:none}html.has-cur input,html.has-cur textarea{cursor:text}.cur.on,.cur-r.on{opacity:1}}
 </style>
 </head>
 <body>
@@ -1090,6 +1097,17 @@ cs.forEach(function(c){var k=Math.round(c.getBoundingClientRect().top+window.scr
 Object.keys(rows).forEach(function(k){var r=rows[k],m=0;r.forEach(function(c){var t=c.querySelector('.tech'),h3=c.querySelector('h3');m=Math.max(m,t.getBoundingClientRect().bottom-h3.getBoundingClientRect().top)});
 r.forEach(function(c){var t=c.querySelector('.tech'),h3=c.querySelector('h3'),d=m-(t.getBoundingClientRect().bottom-h3.getBoundingClientRect().top);if(d>0)t.style.minHeight=(t.getBoundingClientRect().height+d)+'px'})})}
 var tm;window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(run,150)});window.addEventListener('load',run);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(run);run()})();
+</script>
+<div class="cur" aria-hidden="true"></div><div class="cur-r" aria-hidden="true"></div>
+<script>
+(function(){if(!matchMedia('(hover:hover) and (pointer:fine)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var d=document.querySelector('.cur'),r=document.querySelector('.cur-r');document.documentElement.classList.add('has-cur');
+var x=-100,y=-100,rx=x,ry=y;
+document.addEventListener('mousemove',function(e){x=e.clientX;y=e.clientY;d.style.transform='translate('+x+'px,'+y+'px)';d.classList.add('on');r.classList.add('on');
+var t=e.target.closest&&e.target.closest('a,button,summary,[tabindex],label,.card,.cmb');r.classList.toggle('hov',!!t)},{passive:true});
+document.addEventListener('mouseleave',function(){d.classList.remove('on');r.classList.remove('on')});
+document.addEventListener('mousedown',function(){r.classList.add('down')});document.addEventListener('mouseup',function(){r.classList.remove('down')});
+(function loop(){rx+=(x-rx)*.18;ry+=(y-ry)*.18;r.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(loop)})()})();
 </script>
 </body>
 </html>
