@@ -629,9 +629,13 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .cmbs.disc2 .cz li{color:rgba(255,255,255,.92)}
 .cmbs.disc2 .go{color:#fff}
 /* правки 19.11: кнопка «Записаться» всегда на экране (на телефоне это нижняя панель) */
-.fbook{position:fixed;right:max(24px,env(safe-area-inset-right,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:75;display:inline-flex;align-items:center;height:56px;padding:0 30px;border-radius:999px;background:var(--marsala);color:#fff;text-decoration:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 22px 40px -18px rgba(94,28,43,.7);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease),background .3s}
+.fbook{position:fixed;right:max(24px,env(safe-area-inset-right,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:75;display:flex;gap:10px;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .fbook.on{opacity:1;transform:none;pointer-events:auto}
-.fbook:hover{background:#171616}
+.fbook a{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;text-decoration:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;transition:background .3s,color .3s}
+.fgo{background:var(--marsala);color:#fff;box-shadow:0 22px 40px -18px rgba(94,28,43,.7)}
+.fgo:hover{background:#171616}
+.fprice{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink),0 22px 40px -22px rgba(23,22,22,.35)}
+.fprice:hover{background:var(--ink);color:#fff}
 @media (max-width:560px){.fbook{display:none}}
 /* правки 19.11: первый экран — текст слева, фото справа (по замечанию тренера, решение Юли) */
 @media (min-width:1001px){
@@ -655,6 +659,11 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 .hs-r .offer br{display:none}
 .badge{display:none}
 }
+/* правки 19.11: черта цены на одном уровне во всех карточках */
+.card .price{margin-top:12px}
+.card .till{margin-top:auto;padding-top:10px}
+/* правки 19.11: кнопки в блоке записи одного размера */
+.way .btn:not(.line){height:56px;font-size:13px;letter-spacing:.18em;padding:0 20px;width:100%;justify-content:center}
 </style>
 </head>
 <body>
@@ -662,7 +671,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
 
 <div class="intro" aria-hidden="true"><span>Lidia Suchkova</span></div>
 <div class="ribbon">Сайт в&nbsp;работе · превью</div>
-<a class="fbook" href="https://dikidi.net/2052677" target="_blank" rel="noopener" aria-label="Записаться онлайн">Записаться →</a>
+<div class="fbook"><a class="fprice" href="#services">Посмотреть цены</a><a class="fgo" href="https://dikidi.net/2052677" target="_blank" rel="noopener" aria-label="Записаться онлайн">Записаться →</a></div>
 <div class="mbar"><a class="btn" href="https://dikidi.net/2052677" target="_blank" rel="noopener">Записаться</a><button class="btn line" type="button" data-write>Написать</button></div>
 
 <header>
@@ -1072,6 +1081,15 @@ document.querySelectorAll('.card').forEach(function(c){
 <script>(function(){function f(){document.querySelectorAll('.rimg img').forEach(function(i){var c=function(){var h=i.naturalHeight*i.clientWidth/i.naturalWidth;i.parentNode.classList.toggle('cut',h>402)};i.complete?c():i.addEventListener('load',c)})}document.readyState=='loading'?document.addEventListener('DOMContentLoaded',f):f();addEventListener('resize',f)})();</script>
 <script>
 (function(){var f=document.querySelector('.fbook');if(!f)return;function t(){f.classList.toggle('on',window.scrollY>window.innerHeight*.6)}window.addEventListener('scroll',t,{passive:true});t()})();
+</script>
+<script>
+/* черта цены на одном уровне: выравниваем высоту «заголовок + время» по карточкам одного ряда */
+(function(){var cs=[].slice.call(document.querySelectorAll('.cards .card'));if(!cs.length)return;
+function run(){cs.forEach(function(c){c.querySelector('.tech').style.minHeight=''});var rows={};
+cs.forEach(function(c){var k=Math.round(c.getBoundingClientRect().top+window.scrollY);(rows[k]=rows[k]||[]).push(c)});
+Object.keys(rows).forEach(function(k){var r=rows[k],m=0;r.forEach(function(c){var t=c.querySelector('.tech'),h3=c.querySelector('h3');m=Math.max(m,t.getBoundingClientRect().bottom-h3.getBoundingClientRect().top)});
+r.forEach(function(c){var t=c.querySelector('.tech'),h3=c.querySelector('h3'),d=m-(t.getBoundingClientRect().bottom-h3.getBoundingClientRect().top);if(d>0)t.style.minHeight=(t.getBoundingClientRect().height+d)+'px'})})}
+var tm;window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(run,150)});window.addEventListener('load',run);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(run);run()})();
 </script>
 </body>
 </html>
