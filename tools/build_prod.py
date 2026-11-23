@@ -46,8 +46,9 @@ RewriteRule ^index\\.(html|php)$ https://thepm.ru/ [R=301,L]
 # www.thepm.ru -> thepm.ru
 RewriteCond %{HTTP_HOST} ^www\\.thepm\\.ru$ [NC]
 RewriteRule ^(.*)$ https://thepm.ru/$1 [R=301,L]
-# http -> https
-RewriteCond %{HTTPS} =off
+# http -> https. On reg.ru nginx terminates SSL and Apache always sees HTTPS=off,
+# so %{HTTPS} gave an endless redirect loop (23.11). Redirect only when nginx says the visitor came over http.
+RewriteCond %{HTTP:X-Forwarded-Proto} =http [NC]
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 '''
 files['config.php'] = open(os.path.join(src, 'config.sample.php'), 'rb').read().replace(
