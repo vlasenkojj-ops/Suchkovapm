@@ -1,12 +1,13 @@
 <?php
 /**
  * Мини-админка thepm.ru: общие функции.
- * Лидия меняет ТОЛЬКО цены и фото в «Мои работы». Всё остальное на сайте ей недоступно.
+ * Лидия меняет ТОЛЬКО цены, фото в «Мои работы» и видео в блоке «Процесс». Всё остальное на сайте ей недоступно.
  * Где что лежит на хостинге:
  *   cms/page.html       — сам сайт = index.html из GitHub (правки Лидии его НЕ меняют);
  *   data/content.php    — цены и списки фото, которые сохранила Лидия (в GitHub не попадает, выкладка его не трогает);
  *   data/backup/        — копия перед каждым сохранением (последние 50), чтобы можно было вернуть;
- *   uploads/works/      — фото, загруженные Лидией.
+ *   uploads/works/      — фото, загруженные Лидией (и обложки видео);
+ *   uploads/video/      — видео, загруженные Лидией (только MP4).
  * Если data/content.php нет, сайт показывает цены и фото из index.html как есть.
  */
 
@@ -72,7 +73,12 @@ function cms_defaults(?string $html = null): array {
             foreach ($all as $a) $works[$tab][] = ['src' => $a[1], 'alt' => html_entity_decode($a[2], ENT_QUOTES, 'UTF-8')];
         }
     }
-    return ['prices' => $prices, 'works' => $works];
+    $videos = [];
+    if (preg_match('~<!--videos-->(.*?)<!--/videos-->~s', $html, $m)) {
+        preg_match_all('~<video src="([^"]+)" poster="([^"]+)"[^>]*></video></div><figcaption>(.*?)</figcaption>~s', $m[1], $all, PREG_SET_ORDER);
+        foreach ($all as $a) $videos[] = ['src' => $a[1], 'poster' => $a[2], 'cap' => html_entity_decode(strip_tags($a[3]), ENT_QUOTES | ENT_HTML5, 'UTF-8')];
+    }
+    return ['prices' => $prices, 'works' => $works, 'videos' => $videos];
 }
 
 function cms_saved(): ?array {
@@ -90,6 +96,7 @@ function cms_current(): array {
     if (!$s) return $def;
     foreach (CMS_PRICES as $id => $_) if (isset($s['prices'][$id]['now'])) $def['prices'][$id] = $s['prices'][$id];
     foreach (CMS_TABS as $tab => $_) if (isset($s['works'][$tab]) && is_array($s['works'][$tab])) $def['works'][$tab] = $s['works'][$tab];
+    if (isset($s['videos']) && is_array($s['videos'])) $def['videos'] = $s['videos'];
     return $def;
 }
 
@@ -127,7 +134,29 @@ function cms_render(): string {
         $html = preg_replace_callback('~<!--works:' . $tab . '-->.*?<!--/works:' . $tab . '-->~s',
             fn() => '<!--works:' . $tab . '-->' . $figs . '<!--/works:' . $tab . '-->', $html, 1);
     }
+    if (isset($s['videos']) && is_array($s['videos'])) {
+        $figs = '';
+        foreach ($c['videos'] as $v) {
+            if (!cms_valid_video($v['src'] ?? '') || !cms_valid_src($v['poster'] ?? '')) continue;
+            $cap = (string)($v['cap'] ?? '');
+            $figs .= "\n      " . '<figure class="vid"><div class="vbox"><video src="' . cms_h($v['src']) . '" poster="' . cms_h($v['poster']) .
+                '" muted loop playsinline autoplay preload="' . (str_starts_with($v['src'], 'assets/') ? 'auto' : 'metadata') .
+                '" aria-label="' . cms_h('Видео: ' . ($cap !== '' ? $cap : 'работа мастера')) . '"></video></div><figcaption>' . cms_typo($cap) . '</figcaption></figure>';
+        }
+        $html = preg_replace_callback('~<!--videos-->.*?<!--/videos-->~s', fn() => '<!--videos-->' . $figs . "\n    <!--/videos-->", $html, 1);
+    }
     return $html;
+}
+
+/** Неразрывный пробел после коротких слов (в, на, до, от…), чтобы предлоги не висели в конце строки. */
+function cms_typo(string $t): string {
+    $t = cms_h(trim(preg_replace('/\s+/u', ' ', $t)));
+    return preg_replace('/(?<=^|\s|&nbsp;)([\p{L}\d]{1,3}) /u', '$1&nbsp;', preg_replace('/(?<=^|\s|&nbsp;)([\p{L}\d]{1,3}) /u', '$1&nbsp;', $t));
+}
+
+/** Видео только из своих папок сайта, только MP4. */
+function cms_valid_video(string $src): bool {
+    return (bool)preg_match('~^(assets/[a-z0-9]+\.mp4|uploads/video/[a-z0-9_-]+\.mp4)$~', $src);
 }
 
 /** Фото только из своих папок сайта. */

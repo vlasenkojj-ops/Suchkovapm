@@ -1,6 +1,6 @@
 <?php
 /**
- * Админка thepm.ru для Лидии: только цены и фото в «Мои работы».
+ * Админка thepm.ru для Лидии: только цены, фото в «Мои работы» и видео в блоке «Процесс».
  * Адрес: https://thepm.ru/admin/   Пароль: в config.php (admin_password), кладётся из секрета GitHub ADMIN_PASSWORD.
  * Тексты, оформление, документы и всё остальное здесь поменять нельзя.
  */
@@ -128,6 +128,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['do'])) {
         jout(['ok' => true, 'src' => 'uploads/works/' . $name]);
     }
 
+    if ($do === 'videos') {
+        $in = json_decode((string)file_get_contents('php://input'), true)['list'] ?? null;
+        if (!is_array($in) || count($in) > 12) jout(['ok' => false, 'msg' => 'Нет данных']);
+        $clean = [];
+        foreach ($in as $v) {
+            $src = (string)($v['src'] ?? ''); $poster = (string)($v['poster'] ?? '');
+            if (!cms_valid_video($src) || !is_file(CMS_ROOT . '/' . $src) || !cms_valid_src($poster) || !is_file(CMS_ROOT . '/' . $poster)) continue;
+            $cap = trim(preg_replace('/\s+/u', ' ', strip_tags((string)($v['cap'] ?? ''))));
+            $clean[] = ['src' => $src, 'poster' => $poster, 'cap' => mb_substr($cap, 0, 60)];
+        }
+        $cur['videos'] = $clean;
+        cms_save($cur);
+        jout(['ok' => true, 'msg' => 'Сохранено, уже на сайте', 'list' => $clean]);
+    }
+
+    if ($do === 'video_chunk') {
+        // видео приходит кусками по 2 МБ: так загрузка не упирается в лимиты хостинга на один запрос
+        $id = (string)($_POST['id'] ?? ''); $idx = (int)($_POST['idx'] ?? -1); $total = (int)($_POST['total'] ?? 0);
+        $f = $_FILES['chunk'] ?? null;
+        if (!preg_match('/^[a-f0-9]{16}$/', $id) || $idx < 0 || $total < 1 || $total > 40 || $idx >= $total || !$f || ($f['error'] ?? 1) !== UPLOAD_ERR_OK)
+            jout(['ok' => false, 'msg' => 'Видео не загрузилось, попробуйте ещё раз']);
+        $tmpDir = dirname(CMS_DATA) . '/tmp';
+        if (!is_dir($tmpDir)) mkdir($tmpDir, 0755, true);
+        cms_protect_dir(dirname(CMS_DATA));
+        foreach (glob($tmpDir . '/*.part') ?: [] as $old) if (time() - filemtime($old) > 3600) @unlink($old);
+        $part = $tmpDir . '/' . $id . '.part';
+        if ($idx === 0) @unlink($part);
+        elseif (!is_file($part)) jout(['ok' => false, 'msg' => 'Загрузка прервалась, попробуйте ещё раз']);
+        file_put_contents($part, (string)file_get_contents($f['tmp_name']), FILE_APPEND | LOCK_EX);
+        clearstatcache();
+        if (filesize($part) > 50 * 1024 * 1024) { @unlink($part); jout(['ok' => false, 'msg' => 'Видео больше 50 МБ. Сожмите его по инструкции и загрузите снова']); }
+        if ($idx < $total - 1) jout(['ok' => true]);
+        $head = (string)file_get_contents($part, false, null, 0, 12);
+        if (substr($head, 4, 4) !== 'ftyp' || substr($head, 8, 4) === 'qt  ') {
+            @unlink($part);
+            jout(['ok' => false, 'msg' => 'Нужен файл MP4. Видео с iPhone (MOV) сохраните в MP4 по инструкции']);
+        }
+        $dir = CMS_ROOT . '/uploads/video';
+        if (!is_dir($dir)) mkdir($dir, 0755, true);
+        $name = 'v-' . date('Ymd-His') . '-' . bin2hex(random_bytes(3)) . '.mp4';
+        rename($part, $dir . '/' . $name);
+        jout(['ok' => true, 'src' => 'uploads/video/' . $name]);
+    }
+
     if ($do === 'undo') {
         $b = glob(CMS_BACKUP . '/content-*.php') ?: [];
         if (!$b) jout(['ok' => false, 'msg' => 'Отменять нечего']);
@@ -186,6 +230,8 @@ input[type=text],input[type=password],input[inputmode]{width:100%;height:46px;bo
 .ph .ctl button{all:unset;cursor:pointer;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
 .ph .ctl button:hover{background:var(--powder)}
 .ph .ctl .del{color:var(--bad)}
+.ph video{width:100%;height:220px;object-fit:cover;background:var(--powder);display:block}
+.ph .cap{margin:6px 8px 0;height:40px;font-size:15px}
 .ph.new{outline:2px solid var(--marsala)}
 .add{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);max-width:calc(100% - 32px);background:var(--ink);color:#fff;padding:14px 20px;border-radius:14px;font-size:15px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
@@ -202,7 +248,7 @@ input[type=text],input[type=password],input[inputmode]{width:100%;height:46px;bo
 <?php if (!$logged): ?>
   <form class="card login" method="post" action="./">
     <h1>Правка сайта</h1>
-    <p class="hint">Здесь можно поменять цены и фото работ на&nbsp;thepm.ru</p>
+    <p class="hint">Здесь можно поменять цены, фото работ и&nbsp;видео на&nbsp;thepm.ru</p>
     <?php if (!$enabled): ?><p class="err">Админка ещё не включена. Напишите Юле</p><?php endif; ?>
     <input type="hidden" name="action" value="login">
     <input type="hidden" name="csrf" value="<?= cms_h($_SESSION['csrf']) ?>">
@@ -242,6 +288,18 @@ input[type=text],input[type=password],input[inputmode]{width:100%;height:46px;bo
       <span class="hint" id="upst" style="margin:0"></span>
     </div>
     <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="card" id="videos">
+    <h2>Видео в блоке «Процесс»</h2>
+    <p class="hint">Только MP4 до&nbsp;50&nbsp;МБ, лучше вертикальное. На&nbsp;сайте видео стоят по&nbsp;3 в&nbsp;ряд, поэтому лучше держать 3 или&nbsp;6 видео. Новое видео встаёт первым. Подпись короткая, например «Брови: процедура»</p>
+    <div class="add">
+      <label class="btn wine" for="vfile">+ Добавить видео</label>
+      <input id="vfile" type="file" accept="video/mp4,video/*" hidden>
+      <span class="hint" id="vst" style="margin:0"></span>
+    </div>
+    <div class="grid" id="vgrid"></div>
+    <div class="bar"><button class="btn light" id="vsave" type="button">Сохранить подписи</button></div>
   </section>
 
   <section class="card">
@@ -292,7 +350,40 @@ document.getElementById('file').addEventListener('change',function(){var files=[
       .then(function(r){if(r.ok)added.push({src:r.src,alt:TABS[tab]+' — работа Лидии Сучковой, Ярославль'});else toast(r.msg,1)})
       .catch(function(){}).then(next)})()});
 
-document.getElementById('undo').addEventListener('click',function(){if(!confirm('Вернуть цены и фото, как было до последнего сохранения?'))return;
+/* видео */
+var VIDEOS=<?= json_encode($data['videos'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) ?>, vgrid=document.getElementById('vgrid');
+function vdraw(fresh){vgrid.innerHTML=VIDEOS.length?VIDEOS.map(function(v,i){return '<div class="ph'+(fresh&&i===0?' new':'')+'"><video src="../'+esc(v.src)+'" poster="../'+esc(v.poster)+'" muted playsinline preload="none" controls></video><input class="cap" type="text" maxlength="60" data-i="'+i+'" value="'+esc(v.cap)+'" placeholder="Подпись" aria-label="Подпись к видео '+(i+1)+'"><div class="n">'+(i+1)+' из '+VIDEOS.length+'</div><div class="ctl"><button type="button" data-a="up" data-i="'+i+'" aria-label="Левее">←</button><button type="button" data-a="down" data-i="'+i+'" aria-label="Правее">→</button><button type="button" class="del" data-a="del" data-i="'+i+'" aria-label="Убрать с сайта">✕</button></div></div>'}).join(''):'<p class="hint">Видео пока нет</p>'}
+function vcaps(){vgrid.querySelectorAll('.cap').forEach(function(c){VIDEOS[+c.dataset.i].cap=c.value})}
+function vsave(msg){return api('videos',{list:VIDEOS}).then(function(r){if(r.ok){VIDEOS=r.list;vdraw();toast(msg||r.msg)}else toast(r.msg,1)})}
+document.getElementById('vsave').addEventListener('click',function(){vcaps();vsave('Подписи сохранены')});
+vgrid.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;vcaps();var i=+b.dataset.i;
+  if(b.dataset.a==='del'){if(!confirm('Убрать это видео с сайта? Вернуть можно кнопкой «Отменить последнее сохранение»'))return;VIDEOS.splice(i,1);vsave('Видео убрано с сайта');return}
+  var j=b.dataset.a==='up'?i-1:i+1;if(j<0||j>=VIDEOS.length)return;var x=VIDEOS[i];VIDEOS[i]=VIDEOS[j];VIDEOS[j]=x;vsave('Порядок сохранён')});
+/* обложка: кадр из начала видео; заодно проверяем, что браузер может это видео показать */
+function vposter(file){return new Promise(function(ok,no){var v=document.createElement('video'),u=URL.createObjectURL(file),done=false;
+  v.muted=true;v.playsInline=true;v.preload='auto';
+  function fail(){if(done)return;done=true;URL.revokeObjectURL(u);no()}
+  v.onerror=fail;setTimeout(fail,20000);
+  v.onloadeddata=function(){v.currentTime=Math.min(.5,(v.duration||1)/2)};
+  v.onseeked=function(){if(done)return;var k=Math.min(1,900/Math.max(v.videoWidth,v.videoHeight)),c=document.createElement('canvas');
+    c.width=Math.round(v.videoWidth*k);c.height=Math.round(v.videoHeight*k);if(!c.width){fail();return}
+    c.getContext('2d').drawImage(v,0,0,c.width,c.height);done=true;URL.revokeObjectURL(u);c.toBlob(function(b){b?ok(b):no()},'image/jpeg',.85)};
+  v.src=u})}
+document.getElementById('vfile').addEventListener('change',function(){var f=this.files[0],st=document.getElementById('vst');this.value='';if(!f)return;
+  if(f.size>50*1024*1024){toast('Видео больше 50 МБ. Сожмите его по инструкции и загрузите снова',1);return}
+  if(!/\.mp4$/i.test(f.name)&&f.type!=='video/mp4'){toast('Нужен файл MP4. Видео с iPhone (MOV) сохраните в MP4 по инструкции',1);return}
+  st.textContent='Готовлю обложку…';
+  vposter(f).then(function(pb){var fd=new FormData();fd.append('photo',pb,'poster.jpg');return api('upload',fd,true)},function(){throw 'poster'})
+  .then(function(pr){if(!pr.ok)throw pr.msg;var id=Array.from(crypto.getRandomValues(new Uint8Array(8))).map(function(x){return('0'+x.toString(16)).slice(-2)}).join(''),
+      CH=2*1024*1024,total=Math.ceil(f.size/CH),i=0;
+    return new Promise(function(ok,no){(function next(){st.textContent='Загружаю видео: '+Math.round(i/total*100)+'%';
+      var fd=new FormData();fd.append('id',id);fd.append('idx',i);fd.append('total',total);fd.append('chunk',f.slice(i*CH,(i+1)*CH),'c');
+      api('video_chunk',fd,true).then(function(r){if(!r.ok){no(r.msg);return}i++;if(i<total)next();else ok({src:r.src,poster:pr.src})},function(){no('')})})()})})
+  .then(function(v){VIDEOS.unshift({src:v.src,poster:v.poster,cap:''});vdraw(1);st.textContent='';return vsave('Видео добавлено. Допишите подпись и нажмите «Сохранить подписи»')})
+  .catch(function(m){st.textContent='';if(m==='poster')toast('Это видео не открывается в браузере. Сохраните его в MP4 по инструкции',1);else if(m)toast(m,1)})});
+vdraw();
+
+document.getElementById('undo').addEventListener('click',function(){if(!confirm('Вернуть цены, фото и видео, как было до последнего сохранения?'))return;
   api('undo').then(function(r){toast(r.msg,!r.ok);if(r.ok)setTimeout(function(){location.reload()},900)})});
 document.getElementById('out').addEventListener('click',function(e){e.preventDefault();api('logout').then(function(){location.reload()})});
 draw();
