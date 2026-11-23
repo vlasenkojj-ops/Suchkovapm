@@ -26,7 +26,10 @@ for page in ['index.html', 'policy.html', 'consent.html', 'cookies.html']:
     if 'rel="canonical"' not in s:
         s = s.replace('</title>', '</title>\n<link rel="canonical" href="%s">' % url, 1)
     files[page] = s.encode('utf-8')
-files['robots.txt'] = ('User-agent: *\nAllow: /\nDisallow: /send.php\nDisallow: /config.php\n\nSitemap: %ssitemap.xml\n' % D).encode()
+# на хостинге главная — только index.php (он берёт шаблон из cms/page.html и подставляет цены и фото из админки).
+# Файла index.html в корне нет, поэтому сервер не сможет отдать страницу мимо админки
+files['cms/page.html'] = files.pop('index.html')
+files['robots.txt'] = ('User-agent: *\nAllow: /\nDisallow: /send.php\nDisallow: /config.php\nDisallow: /admin/\nDisallow: /cms/\nDisallow: /data/\n\nSitemap: %ssitemap.xml\n' % D).encode()
 urls = [(D, '1.0'), (D + 'policy.html', '0.3'), (D + 'consent.html', '0.3'), (D + 'cookies.html', '0.3')]
 files['sitemap.xml'] = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + ''.join('  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n' % (u, today, p) for u, p in urls)
@@ -34,7 +37,12 @@ files['sitemap.xml'] = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="
 # правила редиректов по справке reg.ru (help.reg.ru/support/hosting/redirekty/...)
 files['.htaccess'] = b'''AddDefaultCharset UTF-8
 ErrorDocument 404 /404.html
+# home page = index.php: index.html + prices and photos from the admin (/admin/)
+DirectoryIndex index.php index.html
 RewriteEngine On
+# /index.html -> / (so admin prices are shown on old links too)
+RewriteCond %{THE_REQUEST} \\s/index\\.(html|php)[\\s?] [NC]
+RewriteRule ^index\\.(html|php)$ https://thepm.ru/ [R=301,L]
 # www.thepm.ru -> thepm.ru
 RewriteCond %{HTTP_HOST} ^www\\.thepm\\.ru$ [NC]
 RewriteRule ^(.*)$ https://thepm.ru/$1 [R=301,L]

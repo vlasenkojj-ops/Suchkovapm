@@ -7,7 +7,8 @@ src, out = sys.argv[1], sys.argv[2]
 s = open(src, encoding='utf-8').read()
 keys = {'vk_token': 'VK_TOKEN', 'vk_peer_id': 'VK_PEER_ID',
         'sms_email': 'SMS_EMAIL', 'sms_api_key': 'SMS_API_KEY',
-        'sms_phone': 'SMS_PHONE', 'sms_sign': 'SMS_SIGN'}
+        'sms_phone': 'SMS_PHONE', 'sms_sign': 'SMS_SIGN',
+        'admin_password': 'ADMIN_PASSWORD'}
 for key, env in keys.items():
     val = os.environ.get(env, '').strip()
     if not val:

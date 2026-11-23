@@ -40,6 +40,7 @@ jobs:
           SMS_API_KEY: ${{ secrets.SMS_API_KEY }}
           SMS_PHONE: ${{ secrets.SMS_PHONE }}
           SMS_SIGN: ${{ secrets.SMS_SIGN }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
       - name: Загрузить на хостинг
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -52,3 +53,9 @@ jobs:
           server-dir: www/thepm.ru/
           dry-run: ${{ inputs.dry_run }}
           log-level: standard
+          # правки Лидии из админки живут только на хостинге: выкладка их не трогает
+          exclude: |
+            **/.git*
+            **/.git*/**
+            data/**
+            uploads/**
