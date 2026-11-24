@@ -510,6 +510,9 @@ footer .fh{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppe
 footer .fgrid p{margin:6px 0;font-size:13px}
 footer small{display:block;font-size:11.5px;margin-top:6px}
 footer .fnote{display:block;margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:12px}
+footer .fnote{display:flex;justify-content:space-between;align-items:baseline;gap:8px 32px;flex-wrap:wrap}
+footer .fnote .dev{color:var(--stone);text-decoration:none;white-space:nowrap;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+footer .fnote .dev:hover{color:var(--marsala);border-bottom-color:currentColor}
 .sheet{position:fixed;inset:0;z-index:100;background:rgba(23,22,22,.45);display:grid;place-items:center;padding:20px}
 .sheet[hidden]{display:none}
 .sheet-in{background:var(--porcelain);max-width:440px;width:100%;padding:40px 28px 28px;position:relative;display:flex;flex-direction:column;gap:10px;border-radius:28px}
@@ -961,7 +964,7 @@ section:not(.hero){padding-block:clamp(44px,6vw,96px)}
     <div><span class="fh">Instagram*</span><a href="https://www.instagram.com/suchkova.permanent/" target="_blank" rel="noopener">@suchkova.permanent</a><small>*Instagram принадлежит компании Meta, признанной в&nbsp;России экстремистской организацией</small></div>
     <div><span class="fh">Документы</span><a href="policy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a><a href="consent.html" target="_blank" rel="noopener">Согласие на&nbsp;обработку персональных данных</a><a href="cookies.html" target="_blank" rel="noopener">Политика cookies</a><button class="ckset" type="button" id="cookie-set">Настройки cookies</button></div>
   </div>
-  <div class="wrap fnote">Информация на&nbsp;сайте не&nbsp;является публичной офертой. Перед процедурой проводится консультация, возможны противопоказания</div>
+  <div class="wrap fnote"><span>Информация на&nbsp;сайте не&nbsp;является публичной офертой. Перед процедурой проводится консультация, возможны противопоказания</span><a class="dev" href="https://t.me/Juliia_Vlasenko" target="_blank" rel="noopener">Сайт сделала Юлия Власенко&nbsp;· Telegram</a></div>
 </footer>
 <div class="sheet" id="write" hidden><div class="sheet-in" role="dialog" aria-modal="true" aria-label="Написать мастеру"><button class="x" type="button" data-close aria-label="Закрыть">×</button><h3>Написать мастеру</h3>
   <a class="btn" href="https://vk.ru/club242414607" target="_blank" rel="noopener">ВКонтакте</a><a class="btn" href="https://t.me/lidiasoft" target="_blank" rel="noopener">Telegram @lidiasoft</a><a class="btn line" href="tel:+79937693233">Позвонить</a>
