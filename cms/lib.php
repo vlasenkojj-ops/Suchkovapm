@@ -123,6 +123,17 @@ function cms_render(): string {
         $html = preg_replace_callback('~<b data-p="' . preg_quote($id, '~') . '">.*?</b>~s',
             fn() => '<b data-p="' . $id . '">' . $inner . '</b>', $html, 1);
     }
+    // Микроразметка Schema.org: цены услуг и диапазон цен берём из админки, чтобы совпадали с карточками
+    $nums = [];
+    foreach ($c['prices'] as $id => $p) {
+        if (!isset(CMS_PRICES[$id]) || $p['now'] === '') continue;
+        $nums[] = (int)$p['now'];
+        $html = preg_replace('~"sku":"' . preg_quote($id, '~') . '","price":"\d*"~',
+            '"sku":"' . $id . '","price":"' . (int)$p['now'] . '"', $html, 1);
+    }
+    if ($nums) {
+        $html = preg_replace('~"priceRange":"[^"]*"~', '"priceRange":"' . min($nums) . '–' . max($nums) . ' ₽"', $html, 1);
+    }
     foreach ($c['works'] as $tab => $list) {
         if (!isset(CMS_TABS[$tab])) continue;
         $figs = '';
